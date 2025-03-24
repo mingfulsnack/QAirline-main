@@ -1,0 +1,130 @@
+.requestCancel {
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 2px solid var(--greyText);
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content {
+    input {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    p {
+      color: var(--blackColor);
+      font-weight: 550;
+    }
+
+    .blue {
+      color: var(--PrimaryColor);
+    }
+
+    .code {
+      border-bottom: 2px solid var(--greyBg);
+      padding-bottom: 1rem;
+    }
+
+    .customer {
+      .left {
+        padding-right: 6rem;
+      }
+    }
+
+    .box {
+      display: flex;
+      gap: 1rem;
+      background-color: var(--greyBg);
+      padding-left: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .journey {
+    }
+
+    .acpt {
+      background-color: rgb(235, 214, 147);
+    }
+  }
+}
+
+.confirmCancel {
+  .content {
+    .box {
+      .box1,
+      .box2 {
+        padding-right: 6rem;
+      }
+    }
+
+    .select {
+      display: flex;
+      margin-top: 2rem;
+      justify-content: space-between;
+
+      p {
+        width: 120%;
+      }
+
+      .no {
+        button {
+          background-color: var(--PrimaryColor);
+          border: 1px solid var(--PrimaryColor);
+
+          &:hover {
+            background-color: var(--whiteColor);
+          }
+        }
+      }
+
+      .findingBut {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+
+      .OTPBut {
+        width: 120%;
+      }
+    }
+  }
+}
+
+.confirmOTP {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  p {
+    color: var(--blackColor);
+    margin-bottom: 2rem;
+  }
+
+  .buts {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+  }
+}

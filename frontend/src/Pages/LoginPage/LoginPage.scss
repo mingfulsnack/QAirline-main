@@ -1,0 +1,51 @@
+.login {
+  padding-top: 10rem;
+  display: flex;
+  align-items: center;
+
+  .login-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.col {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-pw {
+    position: relative;
+}
+
+.eye {
+    position: absolute;
+    width: 22px;
+    opacity: 0.5;
+    right: 10px;
+    top: 12px;
+    cursor: pointer;
+}
+
+.forgot-pw {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    padding-top: 1rem;
+    gap: 0.5rem;
+
+    .su {
+        border-right: 1px solid var(--greyText);
+        padding-right: 0.5rem;
+    }
+
+    span {
+        cursor: pointer;
+        color: var(--PrimaryColor);
+        font-size: 14px;
+    }
+}

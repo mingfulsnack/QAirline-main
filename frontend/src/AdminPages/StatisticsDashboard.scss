@@ -1,0 +1,53 @@
+// SCSS File
+.statistics-dashboard {
+  padding: 1rem;
+  .section-container {
+    display: grid;
+    gap: 1rem;
+
+    &--two-cols {
+      grid-template-columns: repeat(1, 1fr);
+
+      @media (min-width: 1024px) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+
+    &--three-cols {
+      padding-top: 20px;
+      grid-template-columns: repeat(1, 1fr);
+
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+
+  .card {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    &__header {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    &__stat-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #6b7280;
+    }
+
+    &__stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    &__chart {
+      height: 24rem;
+    }
+  }
+}

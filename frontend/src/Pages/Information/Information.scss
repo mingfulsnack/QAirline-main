@@ -1,0 +1,169 @@
+// Information.scss
+.informationContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+  padding: 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.accountInfo {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.avatar {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #eaeaea;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &:hover .changeAvatarButton {
+    opacity: 1;
+  }
+}
+
+.changeAvatarButton {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.personalInfo,
+.contactInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.infoField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  label {
+    font-size: 0.875rem;
+    color: #666;
+    font-weight: 500;
+  }
+}
+
+.editButton {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #f0f7ff;
+  }
+}
+
+.editContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editInput {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+  }
+}
+
+.saveButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+span {
+  font-size: 1rem;
+  color: #333;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .informationContainer {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .section {
+    padding: 1rem;
+  }
+
+  .personalInfo,
+  .contactInfo {
+    grid-template-columns: 1fr;
+  }
+
+  .editContainer {
+    flex-direction: column;
+  }
+}

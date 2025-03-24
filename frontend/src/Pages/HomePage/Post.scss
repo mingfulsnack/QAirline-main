@@ -1,0 +1,259 @@
+// LatestNews.scss
+.latest-news {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 4rem;
+
+  &__container {
+    width: 100%;
+    padding: 0 1rem;
+
+    @media (min-width: 768px) {
+      max-width: 1480px;
+      padding: 0 2rem;
+    }
+  }
+
+  &__header {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__title {
+    font-size: 1.875rem;
+    font-weight: bold;
+    text-align: center;
+
+    span {
+      color: #1a1a1a;
+      display: inline-block;
+    }
+  }
+
+  &__slider-container {
+    position: relative;
+    padding: 0 2rem; // Space for navigation buttons
+
+    @media (min-width: 768px) {
+      padding: 0 3rem;
+    }
+  }
+
+  &__nav-button {
+    position: absolute;
+    top: 50%;
+    background: none;
+    /* Xóa màu nền */
+    padding: 0;
+    border: none;
+    /* Xóa viền */
+    z-index: 10;
+    width: 0;
+    height: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.3);
+      /* Hiệu ứng phóng to */
+    }
+
+    &--prev {
+      left: 0;
+      border-style: solid;
+      border-width: 10px 12px 10px 0;
+      /* Tam giác trái */
+      border-color: transparent #000000 transparent transparent;
+    }
+
+    &--next {
+      right: 0;
+      border-style: solid;
+      border-width: 10px 0 10px 12px;
+      /* Tam giác phải */
+      border-color: transparent transparent transparent #000000;
+    }
+
+    &:hover {
+      &--prev {
+        border-color: transparent #d1d5db transparent transparent;
+        /* Đổi màu khi hover */
+      }
+
+      &--next {
+        border-color: transparent transparent transparent #d1d5db;
+        /* Đổi màu khi hover */
+      }
+    }
+  }
+
+  &__slider {
+    .slick-list {
+      margin: 5 rem;
+    }
+
+    .slick-slide {
+      //   padding: 0 0.625rem;
+
+      @media (min-width: 1024px) {
+        margin: 25px;
+      }
+
+      >div {
+        display: flex;
+        height: 100%;
+      }
+    }
+
+    .slick-track {
+      display: flex;
+      align-items: stretch;
+    }
+  }
+}
+
+.news-card {
+  width: 100%;
+  width: 280px; // Minimum card width
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 376px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+
+  @media (min-width: 1024px) {
+    //padding: 0 0.5rem; // Thêm margin horizontal cho màn hình lớn
+  }
+
+  @media (max-width: 1200px) {
+    min-width: 240px;
+  }
+
+  @media (max-width: 768px) {
+    min-width: 220px;
+  }
+
+  @media (max-width: 480px) {
+    min-width: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
+
+  &__image {
+    width: 100%;
+    height: 200px; // Fixed height for consistency
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+
+    @media (max-width: 768px) {
+      height: 180px;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    padding: 0.75rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 0.813rem;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+
+    .news-card__title {
+      color: #2563eb;
+    }
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  /* Màu nền mờ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.post-details {
+  min-width: 400px;
+  height: 500px;
+  overflow-y: auto;
+
+  .post-content {
+    text-align: left;
+  }
+}
+
+.slider_admin {
+  
+}

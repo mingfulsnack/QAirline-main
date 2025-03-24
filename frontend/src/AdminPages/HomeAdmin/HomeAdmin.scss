@@ -1,0 +1,26 @@
+.homeAdmin {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .NavbarAdmin {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .adminContent {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #f4f4f4;
+  }
+  
+  
