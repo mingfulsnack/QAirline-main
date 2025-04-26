@@ -10,7 +10,7 @@ function HotFlights({ hotFlightClick }) {
             airport_from_code: "HAN",
             city_to: "Thành phố Hồ Chí Minh",
             airport_to_code: "SGN",
-            date_departure: "2025-01-01",
+            date_departure: "2025-07-25",
             base_price: 1500000,
         },
         {
@@ -19,7 +19,7 @@ function HotFlights({ hotFlightClick }) {
             airport_from_code: "SGN",
             city_to: "Hà Nội",
             airport_to_code: "HAN",
-            date_departure: "2025-01-10",
+            date_departure: "2025-07-10",
             base_price: 1500000,
         },
         {
@@ -28,7 +28,7 @@ function HotFlights({ hotFlightClick }) {
             airport_from_code: "HUI",
             city_to: "Phú Quốc, Kiên Giang",
             airport_to_code: "PQC",
-            date_departure: "2025-01-05",
+            date_departure: "2025-07-05",
             base_price: 1000000,
         },
         {
@@ -37,7 +37,7 @@ function HotFlights({ hotFlightClick }) {
             airport_from_code: "PQC",
             city_to: "Huế",
             airport_to_code: "HUI",
-            date_departure: "2025-01-25",
+            date_departure: "2025-07-25",
             base_price: 1000000,
         },
         {
@@ -46,7 +46,7 @@ function HotFlights({ hotFlightClick }) {
             airport_from_code: "HAN",
             city_to: "Đà Nẵng",
             airport_to_code: "DAD",
-            date_departure: "2025-01-06",
+            date_departure: "2025-07-06",
             base_price: 1000000,
         },
         {
@@ -55,7 +55,7 @@ function HotFlights({ hotFlightClick }) {
             airport_from_code: "DAD",
             city_to: "Hà Nội",
             airport_to_code: "HAN",
-            date_departure: "2025-01-20",
+            date_departure: "2025-07-20",
             base_price: 1000000,
         },
         {
@@ -64,7 +64,7 @@ function HotFlights({ hotFlightClick }) {
             airport_from_code: "DAD",
             city_to: "Thành phố Hồ Chí Minh",
             airport_to_code: "SGN",
-            date_departure: "2025-01-11",
+            date_departure: "2025-07-11",
             base_price: 1000000,
         },
         {
@@ -73,7 +73,7 @@ function HotFlights({ hotFlightClick }) {
             airport_from_code: "SGN",
             city_to: "Đà Nẵng",
             airport_to_code: "DAD",
-            date_departure: "2025-01-15",
+            date_departure: "2025-07-15",
             base_price: 1000000,
         },
         {
@@ -82,7 +82,7 @@ function HotFlights({ hotFlightClick }) {
             airport_from_code: "HAN",
             city_to: "Phú Quốc, Kiên Giang",
             airport_to_code: "PQC",
-            date_departure: "2025-01-08",
+            date_departure: "2025-07-08",
             base_price: 1800000,
         },
         {
@@ -91,7 +91,7 @@ function HotFlights({ hotFlightClick }) {
             airport_from_code: "PQC",
             city_to: "Hà Nội",
             airport_to_code: "HAN",
-            date_departure: "2025-01-16",
+            date_departure: "2025-07-16",
             base_price: 1800000,
         },
 
