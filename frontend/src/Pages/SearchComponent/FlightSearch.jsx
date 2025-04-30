@@ -484,7 +484,9 @@ const FlightSearch = forwardRef((flightData, ref) => {
           <div className="row3-1"></div>
           <div className="row3-2">
             <div className="input-r3-btn">
-              <button type="submit" onClick={scrollToTop}>Tìm chuyến bay</button>
+              <button type="submit" onClick={scrollToTop}>
+                Tìm chuyến bay
+              </button>
             </div>
           </div>
         </div>

@@ -1,0 +1,135 @@
+/* Navbar.css */
+.navbar-container {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navBar {
+  width: 100%;
+}
+
+.navBarOne {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.logoDiv img {
+  height: 40px;
+  object-fit: contain;
+}
+
+.items {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.itemButton button {
+  background-color: #0071c2;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-right: 1rem;
+}
+
+.listItem {
+  margin: 0 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-weight: 500;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.listItem:hover,
+.listItem.active {
+  color: #0071c2;
+  border-bottom: 2px solid #0071c2;
+}
+
+.auth-section {
+  display: flex;
+  align-items: center;
+}
+
+.login-link,
+.signUp {
+  cursor: pointer;
+  margin-left: 1rem;
+  padding: 0.5rem;
+}
+
+.login-link {
+  color: #555;
+}
+
+.signUp {
+  background-color: #0071c2;
+  color: white;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.username {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.user-icon {
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  background-color: gray;
+  border-radius: 50%;
+  padding: 2px;
+  margin-right: 5px;
+}
+
+.popover {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  z-index: 1001;
+}
+
+.popover ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popover li {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.popover li:hover {
+  background-color: #f5f5f5;
+}

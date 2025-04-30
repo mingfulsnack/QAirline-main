@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../Apis/axios";
 import { useAuth } from "../../Context/AuthProvider";
 import { toast } from "react-toastify";
-
 function LoginPage() {
   const input1Ref = useRef(null);
   const input2Ref = useRef(null);
@@ -71,34 +70,38 @@ function LoginPage() {
 
   return (
     <div className="login flightInfo">
-      <div className="content login-content">
-        <h2>Đăng nhập</h2>
+      <div className="left-outline">
+        <h2>Welcome Back 👋</h2>
+        <p>A brand new day is here. It's your day to shape.</p>
+        <p>Sign in and get started on your projects.</p>
+
         {error && <div className="error-message">{error}</div>}
+
         <form onSubmit={handleLogin}>
           <div className="content-fill col">
             <div className="input-area">
+              <label>Email</label>
               <input
                 ref={input1Ref}
-                type="text"
+                type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                placeholder=" "
+                placeholder="Example@email.com"
               />
-              <label>Tên đăng nhập</label>
             </div>
 
             <div className="input-area">
+              <label>Password</label>
               <input
                 ref={input2Ref}
                 type={showPassword ? "text" : "password"}
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                placeholder=" "
+                placeholder="At least 8 characters"
                 className="input-pw"
               />
-              <label>Mật khẩu</label>
               <img
                 src={
                   showPassword
@@ -110,19 +113,33 @@ function LoginPage() {
                 onClick={togglePasswordVisibility}
               />
             </div>
-          </div>
 
-          <div className="forgot-pw">
-            <span className="su" onClick={() => navigateTo("/RegisterPage")}>
-              Đăng ký
-            </span>
-            <span onClick={() => navigateTo("/ForgotPW")}>Quên mật khẩu</span>
+            <div className="forgot-pw">
+              <span onClick={() => navigateTo("/ForgotPW")}>
+                Forgot Password?
+              </span>
+            </div>
           </div>
 
           <div className="findingBut">
-            <button>Đăng nhập</button>
+            <button>Sign in</button>
           </div>
         </form>
+
+        <div className="signup-text">
+          Don't you have an account?{" "}
+          <span className="su" onClick={() => navigateTo("/RegisterPage")}>
+            Sign up
+          </span>
+        </div>
+      </div>
+
+      <div className="content login-content">
+        <img
+          className="login-img"
+          src="/assets/loginImg.jpg"
+          alt="Login Background"
+        />
       </div>
     </div>
   );

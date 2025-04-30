@@ -74,35 +74,36 @@ function RegisterPage() {
 
   return (
     <div className="login flightInfo">
-      <div className="content login-content">
-        <h2>Đăng ký</h2>
+      <div className="left-outline">
+        <h2>Register</h2>
+
         {error && <div className="error-message">{error}</div>}
+
         <form onSubmit={handleRegister}>
           <div className="content-fill col">
             <div className="input-area">
+              <label>Email</label>
               <input
                 ref={input1Ref}
-                autoFocus
-                type="text"
+                type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                placeholder=" "
+                placeholder="Example@email.com"
               />
-              <label>Tên đăng nhập</label>
             </div>
 
             <div className="input-area">
+              <label>Password</label>
               <input
                 ref={input2Ref}
                 type={showPassword ? "text" : "password"}
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                placeholder=" "
+                placeholder="At least 8 characters"
                 className="input-pw"
               />
-              <label>Mật khẩu</label>
               <img
                 src={
                   showPassword
@@ -114,17 +115,16 @@ function RegisterPage() {
                 onClick={togglePasswordVisibility}
               />
             </div>
-
             <div className="input-area">
+              <label>Repassword</label>
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
-                placeholder=" "
+                placeholder="Enter your password again"
                 className="input-pw"
               />
-              <label>Nhập lại mật khẩu</label>
               <img
                 src={
                   showConfirmPassword
@@ -136,19 +136,33 @@ function RegisterPage() {
                 onClick={toggleConfirmPasswordVisibility}
               />
             </div>
-          </div>
 
-          <div className="forgot-pw">
-            <span className="su" onClick={() => navigateTo("/LoginPage")}>
-              Đăng nhập
-            </span>
-            <span onClick={() => navigateTo("/ForgotPW")}>Quên mật khẩu</span>
+            <div className="forgot-pw">
+              <span onClick={() => navigateTo("/ForgotPW")}>
+                Forgot Password?
+              </span>
+            </div>
           </div>
 
           <div className="findingBut">
-            <button type="submit">Đăng ký</button>
+            <button>Sign Up</button>
           </div>
         </form>
+
+        <div className="signup-text">
+          You already have an account?{" "}
+          <span className="su" onClick={() => navigateTo("/LoginPage")}>
+            Sign in
+          </span>
+        </div>
+      </div>
+
+      <div className="content login-content">
+        <img
+          className="login-img"
+          src="/assets/loginImg.jpg"
+          alt="Login Background"
+        />
       </div>
     </div>
   );

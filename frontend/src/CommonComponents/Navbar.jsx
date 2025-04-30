@@ -1,9 +1,8 @@
-import { BsPhoneVibrate } from "react-icons/bs";
-import { AiOutlineGlobal } from "react-icons/ai";
-import PropTypes from "prop-types";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../Context/AuthProvider";
+import PropTypes from "prop-types";
+import "./Navbar.css"; // Make sure to create this CSS file
 
 const validPaths = ["/", "/FlightInfo", "/CancelFlight", "/MyBooking"];
 
@@ -41,120 +40,112 @@ const Navbar = ({ onSearchClick }) => {
   };
 
   return (
-    <div className="navBar flex">
-      <div className="navBarOne flex">
-        <Link to={"/"}>
-          <div className="logoDiv">
-            <img src="./assets/QAirlineNewLogo.png" alt="Logo" />
-          </div>
-        </Link>
-        <ul className="items flex">
-          <li className="itemButton">
-            <button onClick={onSearchClick}>Đặt vé ngay</button>
-          </li>
-          <li
-            className={`listItem ${activeItem === "/" ? "active" : ""}`}
-            onClick={() => navigateTo("/")}
-          >
-            Trang chủ
-          </li>
-          <li
-            className={`listItem ${
-              activeItem === "/FlightInfo" ? "active" : ""
-            }`}
-            onClick={() => navigateTo("/FlightInfo")}
-          >
-            Thông tin chuyến bay
-          </li>
-          <li
-            className={`listItem ${
-              activeItem === "/CancelFlight" ? "active" : ""
-            }`}
-            onClick={() => navigateTo("/CancelFlight")}
-          >
-            Hủy vé
-          </li>
-          {localStorage.getItem("role") ? (
+    <header className="navbar-container">
+      <div className="navBar">
+        <div className="navBarOne">
+          <Link to={"/"} className="logo-link">
+            <div className="logoDiv">
+              <img src="./assets/QAirlineNewLogo.png" alt="Logo" />
+            </div>
+          </Link>
+
+          <ul className="items">
+            <li className="itemButton">
+              <button onClick={onSearchClick}>Đặt vé ngay</button>
+            </li>
+            <li
+              className={`listItem ${activeItem === "/" ? "active" : ""}`}
+              onClick={() => navigateTo("/")}
+            >
+              Trang chủ
+            </li>
             <li
               className={`listItem ${
-                activeItem === "/MyBooking" ? "active" : ""
+                activeItem === "/FlightInfo" ? "active" : ""
               }`}
-              onClick={() => navigateTo("/MyBooking")}
+              onClick={() => navigateTo("/FlightInfo")}
             >
-              My Booking
+              Thông tin chuyến bay
             </li>
-          ) : (
-            <></>
-          )}
-        </ul>
-
-        <div className="none flex">
-          <li className="flex">
-            {/* <AiOutlineGlobal className="icon" />
-            Ngôn ngữ */}
-          </li>
-        </div>
-
-        <div className="atb flex">
-          {!isLoggedIn ? (
-            <>
-              <span onClick={() => navigateTo("/LoginPage")}>Đăng nhập</span>
-              <span
-                className="signUp"
-                onClick={() => navigateTo("/RegisterPage")}
+            <li
+              className={`listItem ${
+                activeItem === "/CancelFlight" ? "active" : ""
+              }`}
+              onClick={() => navigateTo("/CancelFlight")}
+            >
+              Hủy vé
+            </li>
+            {localStorage.getItem("role") && (
+              <li
+                className={`listItem ${
+                  activeItem === "/MyBooking" ? "active" : ""
+                }`}
+                onClick={() => navigateTo("/MyBooking")}
               >
-                Đăng ký
-              </span>
-            </>
-          ) : (
-            <>
-              <span onClick={togglePopover} className="username">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-6"
-                  style={{
-                    width: "14px",
-                    height: "14px",
-                    verticalAlign: "middle",
-                    backgroundColor: "gray",
-                    borderRadius: "50%",
-                    padding: "2px",
-                  }}
+                My Booking
+              </li>
+            )}
+          </ul>
+
+          <div className="auth-section">
+            {!isLoggedIn ? (
+              <>
+                <span
+                  className="login-link"
+                  onClick={() => navigateTo("/LoginPage")}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                  />
-                </svg>
-                Xin chào,
-                {" " + username}
-              </span>
-              {showPopover && (
-                <div className="popover">
-                  <ul>
-                    <li onClick={() => navigateTo("/profile")}>
-                      Thông tin cá nhân
-                    </li>
-                    {localStorage.getItem("role").replace(/"/g, "") ===
-                    "admin" ? (
-                      <li onClick={() => navigateTo("/HomeAdmin")}>
-                        Quản trị viên
+                  Đăng nhập
+                </span>
+                <span
+                  className="signUp"
+                  onClick={() => navigateTo("/RegisterPage")}
+                >
+                  Đăng ký
+                </span>
+              </>
+            ) : (
+              <div className="user-menu">
+                <span onClick={togglePopover} className="username">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="user-icon"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                    />
+                  </svg>
+                  Xin chào,
+                  {" " + username}
+                </span>
+                {showPopover && (
+                  <div className="popover">
+                    <ul>
+                      <li onClick={() => navigateTo("/profile")}>
+                        Thông tin cá nhân
                       </li>
-                    ) : null}
-                    <li onClick={handleLogout}>Đăng xuất</li>
-                  </ul>
-                </div>
-              )}
-            </>
-          )}
+                      {localStorage.getItem("role") &&
+                        localStorage.getItem("role").replace(/"/g, "") ===
+                          "admin" && (
+                          <li onClick={() => navigateTo("/HomeAdmin")}>
+                            Quản trị viên
+                          </li>
+                        )}
+                      <li onClick={handleLogout}>Đăng xuất</li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

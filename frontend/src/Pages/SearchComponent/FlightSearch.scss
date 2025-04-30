@@ -1,5 +1,5 @@
 .container-flight-search {
-  margin-top: 21.9rem;
+  margin-top: -250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -102,7 +102,7 @@
     .row2-1 {
       display: flex;
       flex-wrap: wrap;
-      background-color: #F9FAFB;
+      background-color: #f9fafb;
       border: 1px solid #d0d5dd;
       border-radius: 5px;
 
@@ -127,7 +127,7 @@
           border: none;
           padding: 5px;
           border-radius: 5px;
-          background-color: #F9FAFB;
+          background-color: #f9fafb;
 
           &:focus {
             outline: none;
@@ -139,7 +139,7 @@
         position: absolute;
         right: -10px;
         z-index: 1000;
-        top: 50%; 
+        top: 50%;
         background-color: rgb(100, 175, 83);
         width: 20px;
         height: 20px;
@@ -166,20 +166,20 @@
     //     transition: all 10s ease;
     //     animation: rainbowBorder 10s linear infinite;
     //   }
-  
+
     //   /* Hiệu ứng khi trường nhập có focus */
     //   #discount-code:focus {
     //     border-color: #327c23; /* Viền khi focus */
     //     background-color: #f0f8f0; /* Màu nền khi focus */
     //     box-shadow: 0 0 10px rgba(50, 124, 35, 0.5); /* Đổ bóng xung quanh */
     //   }
-  
+
     //   /* Hiệu ứng khi hover vào trường nhập */
     //   #discount-code:hover {
     //     border-color: #327c23; /* Viền khi hover */
     //     background-color: #f9faf7; /* Màu nền khi hover */
     //   }
-  
+
     //   /* Tạo hiệu ứng cầu vồng quanh border */
     //   @keyframes rainbowBorder {
     //     0% {
@@ -232,7 +232,7 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-items: center; 
+        align-items: center;
         font-size: 15px;
         font-weight: 550;
         background-color: var(--PrimaryColor);
@@ -318,7 +318,7 @@
       .row2 {
         .row2-1 {
           display: grid;
-          grid-template-columns: repeat(2, 1fr); 
+          grid-template-columns: repeat(2, 1fr);
           grid-template-rows: auto auto auto;
 
           div.input-r2:nth-child(5) {
@@ -329,7 +329,7 @@
           .input-r2 {
             border-bottom: 1px solid #d0d5dd;
           }
-          
+
           .no-bor {
             border-right: none;
           }
@@ -337,7 +337,6 @@
           .passengers {
             border: none;
           }
-
         }
       }
     }

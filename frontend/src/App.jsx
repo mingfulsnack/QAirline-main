@@ -33,7 +33,6 @@ function App() {
     if (isHomePage) {
       handleScrollToFlightSearch();
     } else {
-      // Điều hướng đến HomePage và cuộn xuống
       navigate("/", { state: { scrollToFlightSearch: true } });
     }
   };
@@ -44,7 +43,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="App-container">
       {isAdminPage ? (
         <HomeAdmin>{routeElement}</HomeAdmin>
       ) : (

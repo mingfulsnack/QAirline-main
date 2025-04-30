@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import Home from "./Home";
+import HeroSection from "./HeroSection/HeroSection";
 import FlightSearch from "../SearchComponent/FlightSearch";
 import Support from "./Support";
 import Info from "./Info";
@@ -23,8 +23,8 @@ function HomePage({ flightSearchRef, hotFlightClick, flightData }) {
   }, [location.state, flightSearchRef]);
 
   return (
-    <div>
-      <Home />
+    <div className="home-container">
+      <HeroSection />
       <FlightSearch ref={flightSearchRef} flightData={flightData} />
       <Post />
       <HotFlights hotFlightClick={hotFlightClick} />

@@ -1,51 +1,215 @@
-.login {
-  padding-top: 10rem;
+.flightInfo {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  overflow: hidden; /* Ngăn chặn overflow gây ra viền */
+  padding: 0; /* Xóa padding mặc định */
+  margin-left: 1.5rem; /* Thêm margin trái */
+}
 
-  .login-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.login {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin-left: 0.5rem;
+
+  h2 {
+    font-size: 2.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+    margin-bottom: 0.25rem;
+    line-height: 1.5;
   }
 }
 
-.col {
-  padding-top: 2rem;
+.left-outline {
+  background: #ffffff;
+  width: 50%;
+  padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.login-content {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0; /* Xóa margin */
+  padding: 0; /* Xóa padding */
+  border: none; /* Xóa border */
+}
+
+.login-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block; /* Sửa lỗi inline-block gây ra khoảng cách */
+  margin: 0; /* Xóa margin */
+  padding: 0; /* Xóa padding */
+  border: none; /* Xóa border */
+}
+
+.content-fill {
+  margin-top: 1.5rem;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.input-area {
+  position: relative;
+
+  label {
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #0071c2;
+    }
+  }
 }
 
 .input-pw {
-    position: relative;
+  padding-right: 2.5rem !important;
 }
 
 .eye {
-    position: absolute;
-    width: 22px;
-    opacity: 0.5;
-    right: 10px;
-    top: 12px;
-    cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .forgot-pw {
-    display: flex;
-    justify-content: end;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: -0.5rem;
+
+  span {
+    cursor: pointer;
+    color: #0071c2;
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.findingBut {
+  margin-top: 1.5rem;
+
+  button {
     width: 100%;
-    padding-top: 1rem;
-    gap: 0.5rem;
+    background-color: #0071c2;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.85rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
 
-    .su {
-        border-right: 1px solid var(--greyText);
-        padding-right: 0.5rem;
+    &:hover {
+      background-color: #00355b;
     }
+  }
+}
 
-    span {
-        cursor: pointer;
-        color: var(--PrimaryColor);
-        font-size: 14px;
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+  }
+
+  span {
+    padding: 0 0.75rem;
+    font-size: 0.85rem;
+    color: #666;
+  }
+}
+
+.signup-text {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #333;
+
+  .su {
+    color: #0071c2;
+    cursor: pointer;
+    margin-left: 0.25rem;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
     }
+  }
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .flightInfo {
+    flex-direction: column-reverse;
+  }
+
+  .left-outline {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .login-content {
+    width: 100%;
+    height: 30vh;
+  }
 }
