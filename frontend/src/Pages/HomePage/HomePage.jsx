@@ -23,7 +23,16 @@ function HomePage({ flightSearchRef, hotFlightClick, flightData }) {
   }, [location.state, flightSearchRef]);
 
   return (
-    <div className="home-container">
+    <div
+      className="home-container"
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        alignContent: "center",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <HeroSection />
       <FlightSearch ref={flightSearchRef} flightData={flightData} />
       <Post />

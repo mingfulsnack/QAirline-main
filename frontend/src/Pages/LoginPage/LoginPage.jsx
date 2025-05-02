@@ -83,7 +83,7 @@ function LoginPage() {
               <label>Email</label>
               <input
                 ref={input1Ref}
-                type="email"
+                type="text"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}

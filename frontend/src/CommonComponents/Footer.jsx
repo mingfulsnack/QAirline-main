@@ -1,5 +1,6 @@
 import { AiFillYoutube, AiOutlineTwitter } from "react-icons/ai";
 import { TiSocialFacebook } from "react-icons/ti";
+import "./Footer.scss";
 
 const Footer = () => {
   return (

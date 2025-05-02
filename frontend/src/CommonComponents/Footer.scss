@@ -1,0 +1,157 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--SecondaryColor);
+  color: var(--whiteColor);
+  width: 100%;
+  padding: 2rem 0;
+  position: relative;
+
+  .sectionContainer {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 2rem;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cột ngang */
+    gap: 1rem; /* Khoảng cách giữa các cột */
+  }
+
+  .gridOne {
+    .logoDiv {
+      margin-bottom: 1rem;
+
+      .logoFooter {
+        width: 180px;
+        height: auto;
+      }
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+      color: var(--whiteColor);
+      opacity: 0.8;
+    }
+
+    .socialIcon {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .icon {
+        font-size: 2rem;
+        color: var(--whiteColor);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: var(--PrimaryColor);
+          transform: translateY(-3px);
+        }
+      }
+    }
+  }
+
+  .footerLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .linkTitle {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--whiteColor);
+    }
+
+    li {
+      list-style: none;
+      margin-bottom: 0.7rem;
+
+      a {
+        color: var(--whiteColor);
+        opacity: 0.8;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+          opacity: 1;
+          color: var(--PrimaryColor);
+          transform: translateX(7px);
+        }
+      }
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+  .footer {
+    .sectionContainer {
+      padding: 0 2rem;
+    }
+
+    .grid {
+      grid-template-columns: repeat(
+        4,
+        1fr
+      ); /* Giữ 4 cột ngay cả trên màn hình nhỏ hơn */
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .footer {
+    .sectionContainer {
+      padding: 0 1.5rem;
+    }
+
+    .grid {
+      grid-template-columns: repeat(
+        4,
+        1fr
+      ); /* Giữ 4 cột trên màn hình rất nhỏ */
+      gap: 1rem; /* Giảm khoảng cách cho màn hình nhỏ */
+    }
+
+    .gridOne {
+      .logoDiv {
+        .logoFooter {
+          width: 120px; /* Giảm kích thước logo cho màn hình nhỏ */
+        }
+      }
+
+      p {
+        font-size: 0.8rem; /* Giảm kích thước chữ */
+      }
+
+      .socialIcon {
+        .icon {
+          font-size: 1.5rem; /* Giảm kích thước icon */
+        }
+      }
+    }
+
+    .footerLinks {
+      .linkTitle {
+        font-size: 0.9rem; /* Giảm kích thước tiêu đề */
+      }
+
+      li {
+        a {
+          font-size: 0.8rem; /* Giảm kích thước chữ liên kết */
+        }
+      }
+    }
+  }
+}
