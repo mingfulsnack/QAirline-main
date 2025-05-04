@@ -120,7 +120,7 @@ function CancelFlight() {
   };
 
   return (
-    <div className="flightInfo">
+    <div className="cancelFlight">
       <h1 className="title">Huỷ đặt chỗ</h1>
       <div className="content">
         <button className="buttop">Mã đặt chỗ/Số vé điện tử</button>

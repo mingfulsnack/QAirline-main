@@ -1,0 +1,181 @@
+.flight-info-result-container {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: var(--whiteColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--greyText);
+
+    .guest-info {
+      .prepared-for {
+        font-size: 0.9rem;
+        color: var(--greyText);
+        margin-bottom: 0.2rem;
+      }
+      .guest-name {
+        font-size: 1.5rem;
+        color: var(--blackColor);
+        margin-bottom: 0;
+      }
+    }
+
+    .booking-code {
+      p {
+        font-size: 1rem;
+        color: var(--secondaryColor);
+        margin-bottom: 0;
+        .code-value {
+          font-weight: bold;
+          color: var(--PrimaryColor);
+        }
+      }
+    }
+
+    .airline-logo {
+      display: flex;
+      align-items: center;
+      .logo-img {
+        width: 50px;
+        height: 50px;
+        margin-right: 0.5rem;
+      }
+      .airline-name {
+        font-size: 1.2rem;
+        color: var(--blackColor);
+        margin: 0;
+      }
+    }
+  }
+
+  .flight-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    .flight-icon {
+      font-size: 2rem;
+      color: var(--PrimaryColor);
+      margin-right: 1rem;
+    }
+
+    .flight-route {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .departure,
+      .arrival {
+        text-align: center;
+        .airport-code {
+          font-size: 1.3rem;
+          color: var(--blackColor);
+          margin-bottom: 0.2rem;
+        }
+        .city-country {
+          font-size: 0.9rem;
+          color: var(--greyText);
+          margin-bottom: 0.2rem;
+        }
+        .time {
+          font-size: 1rem;
+          color: var(--secondaryColor);
+        }
+      }
+
+      .arrow-icon {
+        font-size: 1.5rem;
+        color: var(--blackColor);
+      }
+    }
+
+    .flight-status {
+      margin-left: auto;
+      font-size: 1rem;
+      strong {
+        &.confirmed {
+          color: green;
+        }
+        &.pending {
+          color: orange;
+        }
+      }
+    }
+  }
+
+  .passenger-info-section {
+    margin-bottom: 1.5rem;
+    h3 {
+      font-size: 1.2rem;
+      color: var(--secondaryColor);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--greyLight);
+      padding-bottom: 0.5rem;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.8rem;
+      .info-item {
+        .label {
+          font-size: 0.9rem;
+          color: var(--greyText);
+          margin-bottom: 0.2rem;
+        }
+        .value {
+          font-size: 1rem;
+          color: var(--blackColor);
+          font-weight: bold;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .airline-details-section {
+    h3 {
+      font-size: 1.2rem;
+      color: var(--secondaryColor);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--greyLight);
+      padding-bottom: 0.5rem;
+    }
+    .airline-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      .airline-small-logo {
+        width: 40px;
+        height: 40px;
+      }
+      .airline-name-full {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: var(--blackColor);
+        margin: 0;
+      }
+      .cabin-class,
+      .ticket-receipt {
+        font-size: 0.9rem;
+        color: var(--greyText);
+        margin: 0;
+      }
+    }
+  }
+}
+
+:root {
+  --PrimaryColor: #007bff;
+  --secondaryColor: #6c757d;
+  --greyText: #666;
+  --greyLight: #eee;
+  --whiteColor: #fff;
+  --blackColor: #212529;
+}

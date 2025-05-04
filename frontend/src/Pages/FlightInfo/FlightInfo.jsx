@@ -4,8 +4,6 @@ import FlightInfoResult from "./FlightInfoResult";
 import NotExistFlight from "../../CommonComponents/NotExistFlight";
 import axios from "../../Apis/axios";
 import { useState } from "react";
-21;
-//Find & Show ticket info
 
 let searching = false;
 function FlightInfo() {
@@ -22,6 +20,14 @@ function FlightInfo() {
     });
   };
 
+  const handleGoBack = () => {
+    searching = false;
+    setFlightInfo(null);
+    setFormData((prevState) => ({
+      ...prevState,
+      bookingId: "",
+    }));
+  };
   const handleSearch = async (e) => {
     searching = true;
     e.preventDefault();
@@ -44,54 +50,49 @@ function FlightInfo() {
   console.log(searching);
 
   return (
-    <div className="flightInfo">
-      <h1 className="title">Thông tin chuyến bay</h1>
-      <div className="content">
-        <button className="buttop">Mã đặt chỗ/Số vé điện tử</button>
-        <div className="content-fill">
-          <div className="input-area">
+    <div className="flight-info-container">
+      <h1 className="flight-info-title">Thông tin chuyến bay</h1>
+      <div className="flight-info-search-box">
+        <h2 className="search-title">Tìm kiếm thông tin đặt chỗ</h2>
+        <div className="input-group">
+          <div className="input-field">
             <input
               type="text"
-              placeholder=" "
+              id="bookingId"
               name="bookingId"
               value={formData.bookingId}
               onChange={handleInputChange}
+              required
             />
-            <label htmlFor="">Mã đặt chỗ/Số vé điện tử</label>
+            <label htmlFor="bookingId">Mã đặt chỗ/Số vé điện tử</label>
           </div>
-          <div className="input-area">
+          <div className="input-field">
             <input
-              type="text"
-              placeholder=" "
+              type="email"
+              id="email"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
+              required
             />
-            <label htmlFor="">Email</label>
+            <label htmlFor="email">Email</label>
           </div>
-          <div className="input-area">
-            <input type="text" placeholder=" " />
-            <label htmlFor="">Số điện thoại</label>
-          </div>
+          {/* You can add the phone number input if needed */}
+          {/* <div className="input-field">
+            <input type="tel" id="phone" placeholder=" " />
+            <label htmlFor="phone">Số điện thoại</label>
+          </div> */}
         </div>
-        <div className="findingBut">
-          <button onClick={handleSearch}>Tìm kiếm</button>
-        </div>
+        <button className="search-button" onClick={handleSearch}>
+          <i className="fas fa-search"></i> Tìm kiếm
+        </button>
       </div>
 
       {searching &&
         (flightInfo ? (
-          <FlightInfoResult
-            booking_date={flightInfo?.booking_date}
-            cancellation_deadline={flightInfo?.cancellation_deadline}
-            createdAt={flightInfo?.createdAt}
-            flight_id={flightInfo?.flight_id}
-            guest_info={flightInfo?.guest_info}
-            status={flightInfo?.status}
-            _id={flightInfo?._id}
-          />
+          <FlightInfoResult {...flightInfo} />
         ) : (
-          <NotExistFlight />
+          <NotExistFlight onGoBack={handleGoBack} />
         ))}
     </div>
   );

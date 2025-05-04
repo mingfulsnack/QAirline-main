@@ -1,130 +1,444 @@
+/* Common Variables */
+:root {
+  --PrimaryColor: #0071c2;
+  --SecondaryColor: #f0f8ff;
+  --HoverColor: #005999;
+  --whiteColor: #ffffff;
+  --blackColor: #333333;
+  --greyText: #d3d3d3;
+  --greyBg: #f5f5f5;
+  --dangerColor: #ff6b6b;
+  --successColor: #4caf50;
+  --warmYellow: #ffd700;
+  --shadowColor: rgba(0, 0, 0, 0.1);
+  --borderRadius: 8px;
+  --transition: all 0.3s ease;
+}
+
 .requestCancel {
-  padding-top: 2rem;
-  margin-top: 2rem;
+  padding: 2rem;
+  margin-top: 2.5rem;
   border-top: 2px solid var(--greyText);
+  border-radius: var(--borderRadius);
+  box-shadow: 0 4px 12px var(--shadowColor);
+  background-color: var(--whiteColor);
+}
 
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.requestCancel .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
 
-  .content {
-    input {
-      &:hover {
-        cursor: pointer;
-      }
-    }
+.requestCancel .header h2 {
+  color: var(--PrimaryColor);
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
 
-    p {
-      color: var(--blackColor);
-      font-weight: 550;
-    }
+.requestCancel .header h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: var(--PrimaryColor);
+}
 
-    .blue {
-      color: var(--PrimaryColor);
-    }
+.requestCancel .content p {
+  color: var(--blackColor);
+  font-weight: 500;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
 
-    .code {
-      border-bottom: 2px solid var(--greyBg);
-      padding-bottom: 1rem;
-    }
+.requestCancel .content .blue {
+  color: var(--PrimaryColor);
+  font-weight: 600;
+}
 
-    .customer {
-      .left {
-        padding-right: 6rem;
-      }
-    }
+.requestCancel .content .code {
+  border-bottom: 2px solid var(--greyBg);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 
-    .box {
-      display: flex;
-      gap: 1rem;
-      background-color: var(--greyBg);
-      padding-left: 0.5rem;
-      padding-bottom: 0.5rem;
-      padding-top: 0.5rem;
-      margin-top: 1rem;
-    }
+.requestCancel .content .customer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
 
-    .journey {
-    }
+.requestCancel .content .customer .left {
+  flex: 1;
+  min-width: 250px;
+}
 
-    .acpt {
-      background-color: rgb(235, 214, 147);
-    }
-  }
+.requestCancel .content .customer .right {
+  flex: 1;
+  min-width: 250px;
+}
+
+.requestCancel .content .box {
+  display: flex;
+  gap: 1rem;
+  background-color: var(--greyBg);
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: var(--borderRadius);
+  transition: var(--transition);
+}
+
+.requestCancel .content .box:hover {
+  background-color: var(--SecondaryColor);
+}
+
+.requestCancel .content .journey {
+  margin-top: 1.5rem;
+}
+
+.requestCancel .content .acpt {
+  background-color: rgb(255, 246, 217);
+  border-left: 4px solid var(--warmYellow);
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: var(--borderRadius);
+}
+
+.requestCancel .content input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--PrimaryColor);
 }
 
 .confirmCancel {
-  .content {
-    .box {
-      .box1,
-      .box2 {
-        padding-right: 6rem;
-      }
-    }
-
-    .select {
-      display: flex;
-      margin-top: 2rem;
-      justify-content: space-between;
-
-      p {
-        width: 120%;
-      }
-
-      .no {
-        button {
-          background-color: var(--PrimaryColor);
-          border: 1px solid var(--PrimaryColor);
-
-          &:hover {
-            background-color: var(--whiteColor);
-          }
-        }
-      }
-
-      .findingBut {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-      }
-
-      .OTPBut {
-        width: 120%;
-      }
-    }
-  }
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: var(--borderRadius);
+  box-shadow: 0 4px 12px var(--shadowColor);
+  background-color: var(--whiteColor);
 }
 
+.confirmCancel .content .box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1.5rem;
+  background-color: var(--greyBg);
+  border-radius: var(--borderRadius);
+  margin-bottom: 1.5rem;
+}
+
+.confirmCancel .content .box .box1,
+.confirmCancel .content .box .box2,
+.confirmCancel .content .box .box3 {
+  flex: 1;
+  min-width: 200px;
+}
+
+.confirmCancel .content .select {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.confirmCancel .content .select p {
+  flex: 1;
+  min-width: 300px;
+  color: var(--blackColor);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.confirmCancel .content .select .no button,
+.confirmCancel .content .select .findingBut button {
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--borderRadius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 120px;
+}
+
+.confirmCancel .content .select .no button {
+  background-color: var(--PrimaryColor);
+  border: 1px solid var(--PrimaryColor);
+  color: var(--whiteColor);
+}
+
+.confirmCancel .content .select .no button:hover {
+  background-color: var(--whiteColor);
+  color: var(--PrimaryColor);
+}
+
+.confirmCancel .content .select .findingBut button {
+  background-color: var(--dangerColor);
+  border: 1px solid var(--dangerColor);
+  color: var(--whiteColor);
+}
+
+.confirmCancel .content .select .findingBut button:hover {
+  background-color: var(--whiteColor);
+  color: var(--dangerColor);
+}
+
+.confirmCancel .content .select .OTPBut {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* ======= ConfirmOTP Component ======= */
 .confirmOTP {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  padding: 2.5rem;
+  background-color: var(--whiteColor);
+  border-radius: var(--borderRadius);
+  box-shadow: 0 4px 18px var(--shadowColor);
+  max-width: 500px;
+  margin: 2rem auto;
+}
 
-  p {
-    color: var(--blackColor);
-    margin-bottom: 2rem;
+.confirmOTP p {
+  color: var(--blackColor);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.confirmOTP .input-area {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.confirmOTP .input-area input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--greyText);
+  border-radius: var(--borderRadius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.confirmOTP .input-area input:focus {
+  border-color: var(--PrimaryColor);
+  outline: none;
+}
+
+.confirmOTP .buts {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.confirmOTP .buts button {
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--borderRadius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 120px;
+}
+
+.confirmOTP .buts button:first-child {
+  background-color: var(--greyBg);
+  border: 1px solid var(--greyText);
+  color: var(--blackColor);
+}
+
+.confirmOTP .buts button:first-child:hover {
+  background-color: var(--greyText);
+}
+
+.confirmOTP .buts button:last-child {
+  background-color: var(--PrimaryColor);
+  border: 1px solid var(--PrimaryColor);
+  color: var(--whiteColor);
+}
+
+.confirmOTP .buts button:last-child:hover {
+  background-color: var(--HoverColor);
+}
+
+.confirmOTP .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--blackColor);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.confirmOTP .close-btn:hover {
+  color: var(--dangerColor);
+}
+
+/* ======= Main cancelFlight Component ======= */
+.cancelFlight {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: 4rem;
+  padding: 2rem;
+}
+
+.cancelFlight .title {
+  text-align: center;
+  color: var(--PrimaryColor);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.cancelFlight .title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--PrimaryColor);
+}
+
+.cancelFlight .content {
+  background-color: var(--whiteColor);
+  padding: 2rem;
+  border-radius: var(--borderRadius);
+  box-shadow: 0 4px 12px var(--shadowColor);
+}
+
+.cancelFlight .buttop {
+  background-color: var(--PrimaryColor);
+  color: var(--whiteColor);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+  font-weight: 600;
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.cancelFlight .content-fill {
+  padding: 1.5rem;
+  background-color: var(--greyBg);
+  border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+}
+
+.cancelFlight .input-area {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.cancelFlight .input-area input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--greyText);
+  border-radius: var(--borderRadius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.cancelFlight .input-area input:focus {
+  border-color: var(--PrimaryColor);
+  outline: none;
+}
+
+.cancelFlight .input-area input:not(:placeholder-shown) + label,
+.cancelFlight .input-area input:focus + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.8rem;
+  background-color: var(--whiteColor);
+  padding: 0 5px;
+}
+
+.cancelFlight .input-area label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15px;
+  color: #777;
+  transition: var(--transition);
+  pointer-events: none;
+}
+
+.cancelFlight .error-message {
+  color: var(--dangerColor);
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background-color: rgba(255, 107, 107, 0.1);
+  border-radius: var(--borderRadius);
+  text-align: center;
+}
+
+.cancelFlight .findingBut {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.cancelFlight .findingBut button {
+  background-color: var(--PrimaryColor);
+  color: var(--whiteColor);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: var(--borderRadius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 150px;
+}
+
+.cancelFlight .findingBut button:hover {
+  background-color: var(--HoverColor);
+  transform: translateY(-2px);
+}
+
+.cancelFlight .findingBut button:disabled {
+  background-color: var(--greyText);
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .requestCancel,
+  .confirmCancel,
+  .confirmOTP,
+  .cancelFlight .content {
+    padding: 1.5rem;
   }
 
-  .buts {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    align-items: center;
+  .confirmCancel .content .select {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    cursor: pointer;
+  .confirmCancel .content .select .OTPBut {
+    width: 100%;
+    max-width: none;
+  }
+
+  .confirmOTP {
+    max-width: 90%;
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { FaPlane } from "react-icons/fa";
 import PropTypes from "prop-types";
+import "./FlightInfoResult.scss"; // Import SCSS file
 
 function FlightInfoResult({
   booking_date,
@@ -12,7 +13,7 @@ function FlightInfoResult({
   _id,
 }) {
   function formattedDate(dateInput) {
-    const date = new Date(dateInput); // Chuyển đổi input thành đối tượng Date
+    const date = new Date(dateInput);
     const optionsDate = {
       timeZone: "UTC",
       year: "numeric",
@@ -26,126 +27,104 @@ function FlightInfoResult({
 
     return `${datePart} - ${timePart}`;
   }
+
   return (
-    <div className="flightInfoResult">
-      {/* <div className="cancelBut">
-        <button>Huỷ vé</button>
-      </div> */}
-      <div className="header">
-        <div className="basicInfo">
-          <div className="nameCus">
-            <p>ĐÃ CHUẨN BỊ CHO</p>
-            <h2>{guest_info?.full_name}</h2>
-          </div>
-          <div className="code">
-            <p>
-              MÃ ĐẶT CHỖ <span>{_id}</span>
-            </p>
-          </div>
+    <div className="flight-info-result-container">
+      <div className="header-section">
+        <div className="guest-info">
+          <p className="prepared-for">ĐÃ CHUẨN BỊ CHO</p>
+          <h2 className="guest-name">{guest_info?.full_name}</h2>
         </div>
-        <div className="logoDiv">
-          <img src="/assets/Qlogo.png" alt="" className="logoImg" />
-          <h1>QAIRLINE</h1>
+        <div className="booking-code">
+          <p>
+            MÃ ĐẶT CHỖ: <span className="code-value">{_id}</span>
+          </p>
+        </div>
+        <div className="airline-logo">
+          <img
+            src="/assets/Qlogo.png"
+            alt="QAirline Logo"
+            className="logo-img"
+          />
+          <h1 className="airline-name">QAIRLINE</h1>
         </div>
       </div>
-      <div className="contentRes">
-        <div className="contentHeader">
-          <FaPlane className="icon" />
-          {/* <div className="timeline">
-            <p className="t1">
-              KHỞI HÀNH:<strong>{flight_id?.scheduled_departure}</strong>
-              <span className="triangle-right"></span>
-              ĐẾN: <strong>{flight_id?.scheduled_arrival}</strong>
+
+      <div className="flight-details">
+        <div className="flight-icon">
+          <FaPlane />
+        </div>
+        <div className="flight-route">
+          <div className="departure">
+            <h3 className="airport-code">
+              {flight_id?.origin_airport_id?.airport_code}
+            </h3>
+            <p className="city-country">
+              {flight_id?.origin_airport_id?.city},{" "}
+              {flight_id?.origin_airport_id?.country}
             </p>
-            <p>Vui lòng kiểm tra thời gian bay trước khi khởi hành</p>
-          </div> */}
-        </div>
-        <div className="contentBody">
-          <div className="leftBody">
-            <h1>QAIRLINE</h1>
-            <div>
-              <p>Khoang:</p>
-              <p>Phổ thông</p>
-            </div>
-            <div>
-              <p>Tình trạng chỗ:</p>
-              <strong>{status}</strong>
-            </div>
+            <p className="time">
+              {formattedDate(flight_id?.scheduled_departure)}
+            </p>
           </div>
-          <div className="rightBody">
-            <div className="leftDiv">
-              <div className="goto">
-                <div className="loca">
-                  <h2>{flight_id?.origin_airport_id?.airport_code}</h2>
-                  <h4>
-                    {flight_id?.origin_airport_id?.city +
-                      " , " +
-                      flight_id?.origin_airport_id?.country}
-                  </h4>
-                </div>
-                <div className="triangle-right"></div>
-                <div className="loca mr">
-                  <h2>{flight_id?.destination_airport_id?.airport_code}</h2>
-                  <h4>
-                    {flight_id?.destination_airport_id?.city +
-                      " , " +
-                      flight_id?.destination_airport_id?.country}
-                  </h4>
-                </div>
-              </div>
-              <div className="time">
-                <div className="showTime timeGo">
-                  <div className="path1">
-                    <p>Giờ khởi hành:</p>
-                    <h2>{formattedDate(flight_id?.scheduled_departure)}</h2>
-                  </div>
-                  <div className="path2"></div>
-                </div>
-                <div className="showTime timeCome">
-                  <div className="path1">
-                    <p>Giờ đến:</p>
-                    <h2>{formattedDate(flight_id?.scheduled_arrival)}</h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="rightDiv" style={{ width: "30%" }}>
-              <img
-                src="assets/Qlogo-nobg.png"
-                alt=""
-                style={{
-                  width: "100%",
-                  height: "auto",
-                }}
-              />
-            </div>
+          <div className="arrow-icon">→</div>
+          <div className="arrival">
+            <h3 className="airport-code">
+              {flight_id?.destination_airport_id?.airport_code}
+            </h3>
+            <p className="city-country">
+              {flight_id?.destination_airport_id?.city},{" "}
+              {flight_id?.destination_airport_id?.country}
+            </p>
+            <p className="time">
+              {formattedDate(flight_id?.scheduled_arrival)}
+            </p>
           </div>
         </div>
-        <div className="contentFooter">
-          <div className="f1">
-            <div className="top">
-              <p>Tên hành khách:</p>
-            </div>
-            <div className="bot">
-              <p>{guest_info?.full_name}</p>
-            </div>
+        <p className="flight-status">
+          Trạng thái:{" "}
+          <strong className={status === "Confirmed" ? "confirmed" : "pending"}>
+            {status}
+          </strong>
+        </p>
+      </div>
+
+      <div className="passenger-info-section">
+        <h3>Thông tin hành khách</h3>
+        <div className="info-grid">
+          <div className="info-item">
+            <p className="label">Tên hành khách:</p>
+            <p className="value">{guest_info?.full_name}</p>
           </div>
-          <div className="f2">
-            <div className="top">
-              <p>Ghế:</p>
-            </div>
-            <div className="bot">
-              <p>Được thông báo khi check in</p>
-            </div>
+          <div className="info-item">
+            <p className="label">Mã đặt chỗ:</p>
+            <p className="value">{_id}</p>
           </div>
-          {/* <div className="f3">
-            <div className="top">
-              <p>Biên nhận ticket:</p>
+          <div className="info-item">
+            <p className="label">Ngày đặt chỗ:</p>
+            <p className="value">{formattedDate(booking_date)}</p>
+          </div>
+          {cancellation_deadline && (
+            <div className="info-item">
+              <p className="label">Hạn chót hủy:</p>
+              <p className="value">{formattedDate(cancellation_deadline)}</p>
             </div>
-            <div className="bot">
-              <p>123456789</p>
-            </div>
-          </div> */}
+          )}
+          {/* You can add more details here if needed */}
+        </div>
+      </div>
+
+      <div className="airline-details-section">
+        <h3>Thông tin hãng hàng không</h3>
+        <div className="airline-info">
+          <img
+            src="assets/Qlogo-nobg.png"
+            alt="QAirline Small Logo"
+            className="airline-small-logo"
+          />
+          <p className="airline-name-full">QAIRLINE</p>
+          <p className="cabin-class">Khoang: Phổ thông</p>
+          {/* <p className="ticket-receipt">Biên nhận vé: 123456789</p> */}
         </div>
       </div>
     </div>
@@ -159,5 +138,7 @@ FlightInfoResult.propTypes = {
   guest_info: PropTypes.object,
   status: PropTypes.string,
   _id: PropTypes.string,
+  booking_date: PropTypes.string, // Added booking_date to propTypes
 };
+
 export default FlightInfoResult;
