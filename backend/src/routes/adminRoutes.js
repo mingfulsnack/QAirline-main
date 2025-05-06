@@ -5,8 +5,8 @@ const { verifyToken, isAdmin } = require("../app/middleware/authMiddleware");
 
 router.get("/posts", AdminController.getPosts);
 
-// router.use(verifyToken);
-// router.use(isAdmin);
+router.use(verifyToken); // yêu cầu đăng nhập
+router.use(isAdmin); // yêu cầu quyền admin cho tất cả các route /api/admin
 
 router.post("/posts", AdminController.createPost);
 router.put("/posts/:id", AdminController.updatePost);
