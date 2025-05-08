@@ -2,6 +2,7 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const EmailNotification = require("../../SideCar/emailNotification");
 require("dotenv").config();
 
 class AuthController {
@@ -87,6 +88,24 @@ class AuthController {
       });
     } catch (error) {
       res.status(500).json({ message: error.message + "lỗi ở đăng nhập" });
+    }
+  }
+
+  async forgotPassword(req, res) {
+    try {
+      const { email } = req.body;
+      console.log(email);
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      await EmailNotification.sendForgotPasswordEmail(
+        email,
+        user.password.toString()
+      );
+      res.status(200).json({ message: "Email sent successfully" });
+    } catch (error) {
+      res.status(500).json({ message: error.message + "lỗi ở quên mật khẩu" });
     }
   }
 }

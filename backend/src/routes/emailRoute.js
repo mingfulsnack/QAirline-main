@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const emailNotification = require("../SideCar/emailNotification");
+const AuthController = require("../app/controllers/AuthController");
 
 router.post("/", async (req, res) => {
   const { ticketCode, name, email } = req.body;
@@ -16,5 +17,7 @@ router.post("/", async (req, res) => {
     res.status(500).send("Failed to send email");
   }
 });
+
+router.post("/forgot-password", AuthController.forgotPassword);
 
 module.exports = router;
