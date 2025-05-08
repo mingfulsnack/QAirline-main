@@ -50,6 +50,25 @@ class EmailNotification {
       );
     }
   }
+
+  async sendForgotPasswordEmail(email, password) {
+    try {
+      const letter = {
+        from: process.env.GMAIL_USER,
+        to: email,
+        subject: "Forgot Password",
+        text: `Your new password is: ${password}. Please change it after logging in.\n\nBest regards,\nThe Booking Team`,
+      };
+
+      await this.transporter.sendMail(letter);
+      console.log("ForgotPassword Email sent successfully");
+    } catch (error) {
+      console.log(error);
+      console.log(
+        "Failed to send email. The code is implemented in monitor/sidecar/emailNotification.js"
+      );
+    }
+  }
 }
 
 module.exports = new EmailNotification();
