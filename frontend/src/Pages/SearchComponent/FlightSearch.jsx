@@ -497,8 +497,8 @@ const FlightSearch = forwardRef((flightData, ref) => {
 
 FlightSearch.displayName = "FlightSearch";
 
-FlightSearch.propTypes = {
-  scrollSource: PropTypes.func.isRequired,
-};
+// FlightSearch.propTypes = {
+//   scrollSource: PropTypes.func.isRequired,
+// };
 
 export default FlightSearch;

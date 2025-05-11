@@ -4,11 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import HeroSection from "./HeroSection/HeroSection";
 import FlightSearch from "../SearchComponent/FlightSearch";
-import Support from "./Support";
-import Info from "./Info";
-import Lounge from "./Lounge";
-import Travelers from "./Travelers";
-import Subscribers from "./Subscribers";
+
 import Post from "./Post";
 import { smoothScrollTo } from "../../CommonFunctions/SmoothScroll";
 import HotFlights from "./HotFlights";
@@ -37,11 +33,6 @@ function HomePage({ flightSearchRef, hotFlightClick, flightData }) {
       <FlightSearch ref={flightSearchRef} flightData={flightData} />
       <Post />
       <HotFlights hotFlightClick={hotFlightClick} />
-      {/* <Support /> */}
-      {/* <Info />
-      <Lounge /> */}
-      {/* <Travelers />
-      <Subscribers /> */}
     </div>
   );
 }

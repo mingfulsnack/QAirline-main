@@ -130,8 +130,8 @@ const Post = () => {
           <Slider ref={sliderRef} {...settings} className="latest-news__slider">
             {posts.map((post) => (
               <CardPost
-                key={post.id}
-                _id={post.id}
+                key={post.id || post._id} // Sử dụng id hoặc title làm key
+                _id={post.id || post._id}
                 title={post.title}
                 subtitle={post.subtitle}
                 cover_url={post.cover_url}
