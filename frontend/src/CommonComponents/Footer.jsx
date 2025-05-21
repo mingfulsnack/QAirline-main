@@ -14,7 +14,9 @@ const Footer = () => {
               className="logoFooter"
             />
           </div>
-          <p>Tâm trí của bạn phải mạnh mẽ hơn cảm xúc, bay đi!</p>
+          <p style={{ color: "black" }}>
+            Tâm trí của bạn phải mạnh mẽ hơn cảm xúc, bay đi!
+          </p>
           <div className="socialIcon flex">
             <TiSocialFacebook className="icon" />
             <AiOutlineTwitter className="icon" />
