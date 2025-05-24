@@ -134,19 +134,19 @@ const StatisticsDashboard = () => {
 
       {/* Summary Stats */}
       <div className="section-container section-container--three-cols">
-        <div className="card">
+        <div className="card" style={{ backgroundColor: "#01bff2" }}>
           <h4 className="card__stat-title">Total Bookings</h4>
           <p className="card__stat-value">
             {data.summary.total_confirmed_bookings}
           </p>
         </div>
-        <div className="card">
+        <div className="card" style={{ backgroundColor: "#bd3f30" }}>
           <h4 className="card__stat-title">Total Revenue</h4>
           <p className="card__stat-value">
             {formatRevenue(data.booking_stats[0].totalRevenue)}
           </p>
         </div>
-        <div className="card">
+        <div className="card" style={{ backgroundColor: "#f2a00f" }}>
           <h4 className="card__stat-title">Total Aircraft</h4>
           <p className="card__stat-value">{data.summary.total_aircraft}</p>
         </div>

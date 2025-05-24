@@ -1,235 +1,204 @@
-// SCSS styling for the Add Flight Form
-.addFlightForm {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f7f7;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.flightInfo {
+  flex-direction: column;
+  padding: 20px;
 
-  .addContent {
-    width: 100%;
-    max-width: 600px;
-    background: #ffffff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  .searchBarContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
 
-    h3 {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      color: #333333;
+    span {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
     }
 
-    .form-columns {
-      display: flex;
-      gap: 1rem;
+    .addButton {
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
 
-      .column {
-        flex: 1;
+      &.primary {
+        background-color: #007bff;
+        color: white;
 
-        input {
-          width: 100%;
-          padding: 0.8rem;
-          margin-bottom: 1rem;
-          border: 1px solid #cccccc;
-          border-radius: 4px;
-          font-size: 1rem;
-          transition: border-color 0.2s;
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
 
-          &:focus {
-            border-color: #007bff;
-            outline: none;
-            box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+      &.secondary {
+        background-color: #6c757d;
+        color: white;
+
+        &:hover {
+          background-color: #545b62;
+        }
+      }
+    }
+  }
+
+  .flightTable {
+    margin-top: 20px;
+    overflow-x: auto;
+
+    .flight-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+
+      thead {
+        tr {
+          background-color: #f8f9fa;
+
+          th {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 600;
+            color: #495057;
+            font-size: 14px;
+
+            &.action-header {
+              text-align: center;
+              color: #6c757d;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid #dee2e6;
+          transition: background-color 0.2s ease;
+
+          &:hover {
+            background-color: #f8f9fa;
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          td {
+            padding: 12px;
+            color: #495057;
+            font-size: 14px;
+
+            &.action-cell {
+              text-align: center;
+            }
           }
         }
       }
     }
 
-    .addButton {
-      width: 100%;
-      padding: 0.8rem;
-      background-color: #007bff;
-      color: #ffffff;
-      font-size: 1rem;
+    .edit-btn {
+      background-color: #28a745;
+      color: white;
       border: none;
+      padding: 6px 12px;
       border-radius: 4px;
       cursor: pointer;
-      transition: background-color 0.2s;
+      font-size: 12px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #0056b3;
+        background-color: #218838;
+      }
+
+      &:active {
+        transform: translateY(1px);
       }
     }
 
-    .cancelButton {
-      width: 100%;
-      padding: 0.8rem;
+    .delete-btn {
       background-color: #dc3545;
-      color: #ffffff;
-      font-size: 1rem;
+      color: white;
       border: none;
+      padding: 6px 12px;
       border-radius: 4px;
       cursor: pointer;
-      transition: background-color 0.2s;
+      font-size: 12px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #a71d2a;
+        background-color: #c82333;
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+
+    .no-data {
+      text-align: center;
+      color: #6c757d;
+      font-style: italic;
+      margin-top: 40px;
+      font-size: 16px;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 1200px) {
+  .flightInfo {
+    .flightTable {
+      overflow-x: auto;
+
+      .flight-table {
+        min-width: 1000px;
+
+        th,
+        td {
+          padding: 8px;
+          font-size: 12px;
+        }
+
+        .edit-btn,
+        .delete-btn {
+          padding: 4px 8px;
+          font-size: 10px;
+        }
       }
     }
   }
 }
 
-.flightInfo {
-  padding-top: 9rem;
-
-  .searchBarContainer {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+@media (max-width: 768px) {
+  .flightInfo {
     padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
 
-  .searchInput {
-    flex: 1;
-    /* Chiếm toàn bộ không gian trống còn lại */
-    padding: 8px 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    /* Đường viền */
-    border-radius: 4px;
-    /* Bo góc */
-  }
+    .searchBarContainer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
 
-  .searchInput:focus {
-    outline: none;
-    /* Loại bỏ viền mặc định */
-    border-color: #007bff;
-    /* Đổi màu viền khi focus */
-    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
-    /* Hiệu ứng focus */
-  }
-
-  .addButton {
-    padding: 8px 16px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    background-color: #e6b441;
-    /* Màu xanh cho nút */
-    border: none;
-    /* Loại bỏ viền */
-    border-radius: 4px;
-    /* Bo góc */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .addButton:hover {
-    background-color: #cfa23a;
-    // background-color: #0056b3; /* Màu tối hơn khi hover */
-  }
-
-  .findButton {
-    background-color: #007bff;
-  }
-
-  .findButton:hover {
-    background-color: #0056b3;
-  }
-}
-
-.flightResult {
-  padding-top: 2rem;
-  padding-bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .content {
-    .editButton {
-      cursor: pointer;
-    }
-
-    ul li {
-      padding: 5px;
-    }
-
-    ul li span {
-      font-weight: 550;
-    }
-  }
-}
-
-.addFlightForm {
-  width: 100%;
-
-  .addContent {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-
-    input {
-      width: 300px;
-    }
-  }
-}
-
-.flightTable {
-  width: 100%;
-  overflow-x: auto;
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  th,
-  td {
-    padding: 8px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-
-  th {
-    background-color: #f4f4f4;
-  }
-}
-
-.input-container {
-  position: relative;
-  width: 100%;
-
-  .dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 1000;
-
-    .dropdown-item {
-      padding: 8px 12px;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #f5f5f5;
+      .addButton {
+        width: 100%;
+        padding: 10px;
       }
+    }
 
-      .airport-code {
-        color: #666;
-        font-size: 0.9em;
+    .flightTable {
+      .flight-table {
+        min-width: 800px;
+        font-size: 11px;
+
+        th,
+        td {
+          padding: 6px;
+        }
       }
     }
   }

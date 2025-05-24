@@ -1,0 +1,292 @@
+.addFlightForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
+
+  // Tablet and mobile responsiveness
+  @media (max-width: 768px) {
+    padding: 1rem;
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+  }
+
+  .addContent {
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    // Mobile responsiveness
+    @media (max-width: 768px) {
+      max-width: 100%;
+      padding: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 0.75rem;
+      border-radius: 4px;
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #333333;
+
+      @media (max-width: 480px) {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+      }
+    }
+
+    .form-columns {
+      display: flex;
+      gap: 1rem;
+
+      // Stack columns on mobile
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .column {
+        flex: 1;
+
+        .input-container {
+          position: relative;
+          margin-bottom: 1rem;
+
+          input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+
+            @media (max-width: 480px) {
+              padding: 0.7rem;
+              font-size: 0.9rem;
+            }
+
+            &:focus {
+              border-color: #007bff;
+              outline: none;
+              box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+            }
+          }
+
+          .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #cccccc;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            @media (max-width: 480px) {
+              max-height: 150px;
+            }
+
+            .dropdown-item {
+              padding: 0.8rem;
+              cursor: pointer;
+              border-bottom: 1px solid #f0f0f0;
+              transition: background-color 0.2s;
+
+              @media (max-width: 480px) {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+              }
+
+              &:hover {
+                background-color: #f8f9fa;
+              }
+
+              &:last-child {
+                border-bottom: none;
+              }
+
+              strong {
+                display: block;
+                margin-bottom: 0.2rem;
+              }
+
+              .airport-code {
+                font-size: 0.85rem;
+                color: #666;
+                margin-top: 0.2rem;
+
+                @media (max-width: 480px) {
+                  font-size: 0.8rem;
+                }
+              }
+            }
+          }
+        }
+
+        input:not(.input-container input) {
+          width: 100%;
+          padding: 0.8rem;
+          margin-bottom: 1rem;
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+          font-size: 1rem;
+          transition: border-color 0.2s;
+          box-sizing: border-box;
+
+          @media (max-width: 480px) {
+            padding: 0.7rem;
+            font-size: 0.9rem;
+          }
+
+          &:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+          }
+        }
+      }
+    }
+
+    .addButton {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #007bff;
+      color: #ffffff;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-top: 0.5rem;
+
+      @media (max-width: 480px) {
+        padding: 0.75rem;
+        font-size: 0.95rem;
+      }
+
+      &:hover {
+        background-color: #0056b3;
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+
+    .cancelButton {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #dc3545;
+      color: #ffffff;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-top: 0.5rem;
+
+      @media (max-width: 480px) {
+        padding: 0.75rem;
+        font-size: 0.95rem;
+      }
+
+      &:hover {
+        background-color: #a71d2a;
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+  }
+}
+
+// Additional responsive utilities
+@media (max-width: 480px) {
+  .addFlightForm {
+    .addContent {
+      .form-columns {
+        .column {
+          input[type="datetime-local"] {
+            // Improve datetime input on mobile
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+          }
+
+          input[type="number"] {
+            // Improve number input on mobile
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Landscape orientation adjustments for mobile
+@media (max-width: 768px) and (orientation: landscape) {
+  .addFlightForm {
+    min-height: auto;
+    padding: 1rem;
+
+    .addContent {
+      .form-columns {
+        flex-direction: row;
+        gap: 1rem;
+
+        .column {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+// Large screen adjustments
+@media (min-width: 1200px) {
+  .addFlightForm {
+    .addContent {
+      max-width: 700px;
+      padding: 2rem;
+
+      .form-columns {
+        gap: 1.5rem;
+
+        .column {
+          input {
+            padding: 1rem;
+            font-size: 1.1rem;
+          }
+        }
+      }
+
+      .addButton,
+      .cancelButton {
+        padding: 1rem;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
