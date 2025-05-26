@@ -47,7 +47,7 @@ function App() {
       {isAdminPage ? (
         <HomeAdmin>{routeElement}</HomeAdmin>
       ) : (
-        <>
+        <div className="main-container">
           <Navbar onSearchClick={handleNavbarSearchClick} />
           {isHomePage ? (
             <HomePage
@@ -59,7 +59,7 @@ function App() {
             routeElement
           )}
           <Footer />
-        </>
+        </div>
       )}
       <ToastContainer
         position="top-right"

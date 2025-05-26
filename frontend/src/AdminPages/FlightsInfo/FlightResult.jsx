@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-
+import "./FlightResult.scss";
 function FlightResult({ flight, onSave }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editableFlight, setEditableFlight] = useState(flight);
 
   useEffect(() => {
+    // Cập nhật editableFlight khi prop flight thay đổi
     setEditableFlight(flight);
   }, [flight]);
 
@@ -19,9 +20,9 @@ function FlightResult({ flight, onSave }) {
   const handleEditClick = () => {
     if (isEditing) {
       console.log("Lưu thay đổi:", editableFlight);
-      onSave(editableFlight);
+      onSave(editableFlight); // Gửi chuyến bay đã chỉnh sửa lên component cha
     }
-    setIsEditing(!isEditing);
+    setIsEditing(!isEditing); // Chuyển đổi trạng thái chỉnh sửa
   };
 
   return (
@@ -32,51 +33,23 @@ function FlightResult({ flight, onSave }) {
         </button>
         <ul>
           <li>
-            Mã chuyến bay:{" "}
-            {isEditing ? (
-              <input
-                type="text"
-                value={editableFlight.id}
-                onChange={(e) => handleChange("id", e.target.value)}
-              />
-            ) : (
-              <span>{editableFlight.id}</span>
-            )}
+            Mã chuyến bay: {/* Không cho phép chỉnh sửa, chỉ hiển thị */}
+            <span>{editableFlight.flight_number}</span>
           </li>
           <li>
-            Xuất phát từ:{" "}
-            {isEditing ? (
-              <input
-                type="text"
-                value={editableFlight.origin_airport_id}
-                onChange={(e) =>
-                  handleChange("origin_airport_id", e.target.value)
-                }
-              />
-            ) : (
-              <span>{editableFlight.origin_airport_id}</span>
-            )}
+            Xuất phát từ: {/* Không cho phép chỉnh sửa, chỉ hiển thị */}
+            <span>{editableFlight.origin_airport_id}</span>
           </li>
           <li>
-            Điểm đến:{" "}
-            {isEditing ? (
-              <input
-                type="text"
-                value={editableFlight.destination_airport_id}
-                onChange={(e) =>
-                  handleChange("destination_airport_id", e.target.value)
-                }
-              />
-            ) : (
-              <span>{editableFlight.destination_airport_id}</span>
-            )}
+            Điểm đến: {/* Không cho phép chỉnh sửa, chỉ hiển thị */}
+            <span>{editableFlight.destination_airport_id}</span>
           </li>
           <li>
             Thời gian cất cánh dự kiến:{" "}
             {isEditing ? (
               <input
                 type="datetime-local"
-                value={editableFlight.scheduled_departure}
+                value={editableFlight.scheduled_departure || ""}
                 onChange={(e) =>
                   handleChange("scheduled_departure", e.target.value)
                 }
@@ -90,7 +63,7 @@ function FlightResult({ flight, onSave }) {
             {isEditing ? (
               <input
                 type="datetime-local"
-                value={editableFlight.scheduled_arrival}
+                value={editableFlight.scheduled_arrival || ""}
                 onChange={(e) =>
                   handleChange("scheduled_arrival", e.target.value)
                 }
@@ -100,42 +73,16 @@ function FlightResult({ flight, onSave }) {
             )}
           </li>
           <li>
-            Trạng thái:{" "}
-            {isEditing ? (
-              <input
-                type="text"
-                value={editableFlight.status}
-                onChange={(e) => handleChange("status", e.target.value)}
-              />
-            ) : (
-              <span>{editableFlight.status}</span>
-            )}
+            Trạng thái: {/* Không cho phép chỉnh sửa, chỉ hiển thị */}
+            <span>{editableFlight.status}</span>
           </li>
           <li>
-            Giá vé:{" "}
-            {isEditing ? (
-              <input
-                type="text"
-                value={editableFlight.base_price}
-                onChange={(e) => handleChange("base_price", e.target.value)}
-              />
-            ) : (
-              <span>{editableFlight.base_price}</span>
-            )}
+            Giá vé: {/* Không cho phép chỉnh sửa, chỉ hiển thị */}
+            <span>{editableFlight.base_price}</span>
           </li>
           <li>
-            Số ghế khả dụng:{" "}
-            {isEditing ? (
-              <input
-                type="number"
-                value={editableFlight.available_seats}
-                onChange={(e) =>
-                  handleChange("available_seats", e.target.value)
-                }
-              />
-            ) : (
-              <span>{editableFlight.available_seats}</span>
-            )}
+            Số ghế khả dụng: {/* Không cho phép chỉnh sửa, chỉ hiển thị */}
+            <span>{editableFlight.available_seats}</span>
           </li>
         </ul>
       </div>
@@ -143,17 +90,20 @@ function FlightResult({ flight, onSave }) {
   );
 }
 
-// Định nghĩa PropTypes
+// Cập nhật PropTypes
 FlightResult.propTypes = {
   flight: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    origin_airport_id: PropTypes.string.isRequired,
-    destination_airport_id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+    flight_number: PropTypes.string,
+    origin_airport_id: PropTypes.string.isRequired, // Có thể là string ID hoặc string code
+    destination_airport_id: PropTypes.string.isRequired, // Có thể là string ID hoặc string code
     scheduled_departure: PropTypes.string.isRequired,
     scheduled_arrival: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
-    base_price: PropTypes.string.isRequired,
-    available_seats: PropTypes.number.isRequired,
+    base_price: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+      .isRequired,
+    available_seats: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+      .isRequired,
   }).isRequired,
   onSave: PropTypes.func.isRequired,
 };

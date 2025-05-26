@@ -73,9 +73,13 @@ function RegisterPage() {
   };
 
   return (
-    <div className="login flightInfo">
+    <div className="login ">
       <div className="left-outline">
         <h2>Register</h2>
+        <p>Create your account and take off with ease.</p>
+        <p>
+          Sign up to book flights, manage trips, and explore new destinations.
+        </p>
 
         {error && <div className="error-message">{error}</div>}
 
