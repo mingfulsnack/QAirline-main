@@ -159,6 +159,38 @@ class AdminController {
       res.status(500).json({ message: error.message });
     }
   }
+  // Admin: Delete flight
+  async deleteFlight(req, res) {
+    try {
+      const { flightId } = req.params;
+      console.log("Deleting flight with ID:", flightId);
+
+      // Kiểm tra xem chuyến bay có booking nào không
+      const hasBookings = await Booking.exists({ flight_id: flightId });
+      if (hasBookings) {
+        return res.status(400).json({
+          message: "Cannot delete flight that has existing bookings",
+        });
+      }
+
+      const flight = await Flight.findByIdAndDelete(flightId);
+
+      if (!flight) {
+        return res.status(404).json({ message: "Flight not found" });
+      }
+
+      res.json({
+        message: "Flight deleted successfully",
+        deleted_flight: flight,
+      });
+    } catch (error) {
+      console.error("Error deleting flight:", error);
+      res.status(500).json({
+        message: error.message,
+        error: "Error deleting flight",
+      });
+    }
+  }
 
   async getAllAircraft(req, res) {
     try {

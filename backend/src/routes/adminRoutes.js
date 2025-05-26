@@ -19,6 +19,7 @@ router.delete("/aircraft/:id", AdminController.deleteAircraft);
 
 router.post("/flights", AdminController.createFlight);
 router.put("/flights/:flightId/delay", AdminController.updateFlightTime);
+router.delete("/flights/:flightId", AdminController.deleteFlight);
 
 router.get("/bookings/statistics", AdminController.getBookingStatistics);
 
