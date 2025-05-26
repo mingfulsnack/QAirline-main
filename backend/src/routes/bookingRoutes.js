@@ -21,7 +21,7 @@ router.patch("/:bookingId/cancel", apiLimiter, bookingController.cancelBooking);
 
 router.get("/getAllBookings", bookingController.getAllBookings); // Xem tất cả booking (admin)
 // Routes cho user đã đăng nhập
-router.use("/user", verifyToken, isCustomer); // Middleware cho tất cả routes /user
+router.use("/user", verifyToken, isCustomer); // Yêu cầu đăng nhập cho tất cả routes /user
 router.get("/user/getBooking", bookingController.getUserBookings); // Xem lịch sử đặt vé
 router.post("/user/createBooking", bookingController.createBooking); // Đặt vé với tài khoản
 

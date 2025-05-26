@@ -1,4 +1,7 @@
 // middleware/authMiddleware.js
+const mongoose = require("mongoose");
+const { Types } = mongoose;
+const ObjectId = Types.ObjectId;
 const jwt = require("jsonwebtoken");
 const rateLimit = require("express-rate-limit");
 const Booking = require("../models/Booking");
