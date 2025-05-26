@@ -1,5 +1,16 @@
 // LatestNews.scss
 .posts {
+  .lastest-news {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
   .add-post-button {
     padding: 10px 15px;
     background-color: #007bff;
@@ -22,7 +33,7 @@
     cursor: pointer;
 
     @media (min-width: 1024px) {
-      //margin: 0 0.5rem; // Thêm margin horizontal cho màn hình lớn
+      // margin: 0 0.5rem; // Thêm margin horizontal cho màn hình lớn
     }
 
     @media (max-width: 1200px) {
@@ -34,7 +45,7 @@
     }
 
     @media (max-width: 480px) {
-      min-width: 100%;
+      min-width: 120px;
     }
 
     &:hover {
@@ -43,7 +54,7 @@
 
     &__image {
       width: 100%;
-      height: 200px; // Fixed height for consistency
+      height: 200px;
       object-fit: cover;
       border-radius: 0.5rem;
       margin-bottom: 0.5rem;

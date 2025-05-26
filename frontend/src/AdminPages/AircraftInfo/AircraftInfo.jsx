@@ -11,7 +11,7 @@ const Status = {
 };
 
 function AircraftInfo() {
-  const [aircraftList, setAircraftList] = useState([""]);
+  const [aircraftList, setAircraftList] = useState([]);
   const [searchId, setSearchId] = useState("");
   const [selectedAircraft, setSelectedAircraft] = useState(null);
   const [action, setAction] = useState("showall");

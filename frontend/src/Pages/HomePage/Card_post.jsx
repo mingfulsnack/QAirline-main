@@ -5,7 +5,7 @@ import "./Post.scss";
 
 const CardPost = ({ title, subtitle, cover_url, onClick }) => {
   return (
-    <div className="news-card" onClick={onClick}>
+    <div className="news-card" onClick={onClick ? onClick : undefined}>
       <img src={cover_url} alt={title} className="news-card__image" />
       <div className="news-card__content">
         <h3 className="news-card__title">{title}</h3>
@@ -19,7 +19,7 @@ CardPost.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   cover_url: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default CardPost;

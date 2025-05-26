@@ -69,11 +69,11 @@ function LoginPage() {
   };
 
   return (
-    <div className="login flightInfo">
+    <div className="login">
       <div className="left-outline">
         <h2>Welcome Back 👋</h2>
-        <p>A brand new day is here. It's your day to shape.</p>
-        <p>Sign in and get started on your projects.</p>
+        <p>Your next journey starts now.</p>
+        <p>Book flights easily and explore the world your way.</p>
 
         {error && <div className="error-message">{error}</div>}
 

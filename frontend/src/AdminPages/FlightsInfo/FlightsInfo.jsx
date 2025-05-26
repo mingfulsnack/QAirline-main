@@ -80,6 +80,20 @@ function FlightsInfo() {
     }
   };
 
+  const handleEditFlight = (flight) => {
+    const formattedFlight = {
+      _id: flight._id,
+      origin_airport_id: flight.origin_airport_id.airport_code,
+      destination_airport_id: flight.destination_airport_id.airport_code,
+      scheduled_departure: flight.scheduled_departure,
+      scheduled_arrival: flight.scheduled_arrival,
+      status: flight.status,
+      base_price: flight.base_price,
+      available_seats: flight.available_seats,
+    };
+    setSelectedFlight(formattedFlight);
+    setAction(Status.SEARCH);
+  };
   // Hàm để thêm chuyến bay mới
   const handleAddFlight = (newFlight) => {
     setFlightList([...flightList, newFlight]);
@@ -89,76 +103,71 @@ function FlightsInfo() {
   return (
     <div className="flightInfo">
       <div className="searchBarContainer">
-        Quản lý các chuyến bay tại đây
-        <span> ---------------------</span>
-        {/* <button className="addButton findButton" onClick={handleSearch}>
-          Tìm kiếm & Sửa
-        </button> */}
-        <button className="addButton" onClick={() => setAction(Status.SHOWALL)}>
-          Tất cả chuyến bay
-        </button>
-        <button className="addButton" onClick={() => setAction(Status.ADD)}>
+        <span>Quản lý các chuyến bay</span>
+        <button
+          className="addButton primary"
+          onClick={() => setAction(Status.ADD)}
+        >
           Thêm chuyến bay
+        </button>
+        <button
+          className="addButton secondary"
+          onClick={() => setAction(Status.SHOWALL)}
+        >
+          Tất cả chuyến bay
         </button>
       </div>
 
       {action === Status.SHOWALL && (
         <div className="flightTable">
           {flightList.length > 0 ? (
-            <table>
+            <table className="flight-table">
               <thead>
                 <tr>
-                  <th></th>
+                  <th>ID</th>
                   <th>Mã chuyến bay</th>
                   <th>Xuất phát từ</th>
                   <th>Điểm đến</th>
-                  <th>Thời gian cất cánh dự kiến</th>
-                  <th>Thời gian hạ cánh dự kiến</th>
+                  <th>Thời gian cất cánh</th>
+                  <th>Thời gian hạ cánh</th>
                   <th>Trạng thái</th>
                   <th>Giá vé</th>
-                  <th>Số ghế khả dụng</th>
+                  <th>Ghế khả dụng</th>
+                  <th className="action-header">EDIT</th>
                 </tr>
               </thead>
               <tbody>
-                {flightList.map((flight) => (
-                  <tr key={flight?._id}>
+                {flightList.map((flight, index) => (
+                  <tr key={flight?._id || index}>
+                    <td>{index + 1}</td>
+                    <td>{flight.flight_number || flight._id}</td>
                     <td>
-                      <button
-                        onClick={() => {
-                          // Transform flight data to match FlightResult's expected format
-                          const formattedFlight = {
-                            _id: flight._id,
-                            origin_airport_id:
-                              flight.origin_airport_id.airport_code,
-                            destination_airport_id:
-                              flight.destination_airport_id.airport_code,
-                            scheduled_departure: flight.scheduled_departure,
-                            scheduled_arrival: flight.scheduled_arrival,
-                            status: flight.status,
-                            base_price: flight.base_price,
-                            available_seats: flight.available_seats,
-                          };
-                          setSelectedFlight(formattedFlight);
-                          setAction(Status.SEARCH);
-                        }}
-                      >
-                        edit
-                      </button>
+                      {flight.origin_airport_id?.airport_code ||
+                        flight.origin_airport_id}
                     </td>
-                    <td>{flight._id}</td>
-                    <td>{flight.origin_airport_id.airport_code}</td>
-                    <td>{flight.destination_airport_id.airport_code}</td>
+                    <td>
+                      {flight.destination_airport_id?.airport_code ||
+                        flight.destination_airport_id}
+                    </td>
                     <td>{formatDateTime(flight.scheduled_departure)}</td>
                     <td>{formatDateTime(flight.scheduled_arrival)}</td>
                     <td>{flight.status}</td>
                     <td>{flight.base_price}</td>
                     <td>{flight.available_seats}</td>
+                    <td className="action-cell">
+                      <button
+                        className="edit-btn"
+                        onClick={() => handleEditFlight(flight)}
+                      >
+                        EDIT
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           ) : (
-            <p>Chưa có chuyến bay nào.</p>
+            <p className="no-data">Chưa có chuyến bay nào.</p>
           )}
         </div>
       )}
