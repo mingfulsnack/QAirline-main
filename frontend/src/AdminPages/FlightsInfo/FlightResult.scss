@@ -1,0 +1,350 @@
+/* --- FlightInfo.scss - Responsive Version --- */
+
+// Biến màu sắc cơ bản
+$primary-color: #007bff; // Màu xanh dương cho các nút chính
+$secondary-color: #6c757d; // Màu xám cho các nút phụ
+$success-color: #28a745; // Màu xanh lá cho thành công
+$danger-color: #dc3545; // Màu đỏ cho nguy hiểm
+$border-color: #dee2e6; // Màu viền bảng và các thành phần khác
+$text-color: #343a40; // Màu chữ chính
+$header-bg-color: #f8f9fa; // Màu nền tiêu đề bảng
+$hover-bg-color: #f2f2f2; // Màu nền khi hover hàng
+
+// Breakpoints (điểm ngắt) cho responsive
+$breakpoint-desktop: 1024px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
+
+// Mixin cho nút
+@mixin button-style($bg-color, $text-color: white) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  white-space: nowrap; // Ngăn không cho chữ trong nút bị xuống dòng
+
+  &:hover {
+    filter: brightness(90%);
+  }
+
+  &:active {
+    filter: brightness(80%);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.flightInfo {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: $text-color;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  .searchBarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $border-color;
+    flex-wrap: wrap; // Cho phép các item xuống dòng
+
+    span {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: $primary-color;
+      flex-basis: 100%; // Chiếm toàn bộ chiều rộng trên màn hình nhỏ
+      margin-bottom: 15px; // Khoảng cách với các nút
+      text-align: center;
+    }
+
+    .addButton {
+      @include button-style($primary-color);
+      margin-left: 10px;
+      flex-grow: 1; // Cho phép nút giãn ra
+
+      &.secondary {
+        @include button-style($secondary-color);
+      }
+
+      // Điều chỉnh nút trên màn hình nhỏ
+      @media (max-width: $breakpoint-tablet) {
+        margin-left: 0;
+        margin-top: 10px;
+        &:first-of-type {
+          margin-top: 0; // Nút đầu tiên không có margin-top
+        }
+      }
+    }
+
+    // Điều chỉnh layout nút trên màn hình lớn hơn mobile
+    @media (min-width: $breakpoint-tablet) {
+      span {
+        flex-basis: auto; // Trở lại kích thước tự động
+        margin-bottom: 0;
+        text-align: left;
+      }
+      .addButton {
+        flex-grow: 0; // Trở lại kích thước tự động
+        margin-left: 10px; // Đảm bảo margin giữa các nút
+        &:first-of-type {
+          margin-left: auto; // Đẩy nút đầu tiên sang phải để căn chỉnh với tiêu đề
+        }
+      }
+    }
+  }
+
+  .flightTable {
+    overflow-x: auto; // Rất quan trọng cho bảng responsive
+    margin-top: 20px;
+
+    .flight-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      min-width: 800px; // Đặt min-width để đảm bảo bảng không quá nhỏ trên màn hình mobile
+
+      th,
+      td {
+        border: 1px solid $border-color;
+        padding: 12px 15px;
+        text-align: left;
+        font-size: 0.9rem;
+      }
+
+      th {
+        background-color: $header-bg-color;
+        font-weight: bold;
+        color: $primary-color;
+        text-transform: uppercase;
+      }
+
+      tbody tr {
+        &:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+        &:hover {
+          background-color: $hover-bg-color;
+        }
+      }
+
+      .action-header {
+        width: 80px;
+        text-align: center;
+      }
+
+      .action-cell {
+        text-align: center;
+        white-space: nowrap; // Ngăn không cho nút bị xuống dòng nếu không đủ chỗ
+
+        .edit-btn {
+          @include button-style($success-color);
+          padding: 6px 10px; // Giảm padding một chút trên mobile
+        }
+
+        .delete-btn {
+          @include button-style($danger-color);
+          padding: 6px 10px;
+          margin-left: 5px;
+        }
+      }
+
+      // Điều chỉnh cột trên màn hình nhỏ hơn tablet
+      @media (max-width: $breakpoint-tablet) {
+        th,
+        td {
+          padding: 8px 10px; // Giảm padding
+          font-size: 0.85rem; // Giảm kích thước chữ
+        }
+        .action-header,
+        .action-cell {
+          width: auto; // Cho phép chiều rộng tự động
+        }
+      }
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 30px;
+      font-size: 1.1rem;
+      color: $secondary-color;
+    }
+  }
+
+  /* --- FlightResult (Khi chỉnh sửa) --- */
+  &.FlightResult {
+    padding: 30px;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+    position: relative;
+
+    .content {
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 10px 0;
+          border-bottom: 1px dashed #eee;
+          display: flex;
+          flex-direction: row; // Mặc định là hàng ngang
+          align-items: center;
+          font-size: 1.1rem;
+          flex-wrap: wrap; // Cho phép nội dung xuống dòng
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          span {
+            font-weight: bold;
+            color: $primary-color;
+            margin-left: 10px;
+            word-break: break-word; // Ngắt từ nếu quá dài
+          }
+
+          input[type="datetime-local"] {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid $border-color;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin-left: 10px;
+            max-width: 250px;
+
+            // Điều chỉnh input trên màn hình nhỏ
+            @media (max-width: $breakpoint-tablet) {
+              margin-left: 0;
+              margin-top: 5px; // Đẩy input xuống dòng dưới label
+              max-width: 100%; // Chiếm toàn bộ chiều rộng
+            }
+          }
+
+          // Điều chỉnh label trên màn hình nhỏ
+          @media (max-width: $breakpoint-tablet) {
+            flex-direction: column; // Đổi thành cột dọc
+            align-items: flex-start; // Căn trái
+            font-size: 1rem;
+            padding: 8px 0; // Giảm padding
+
+            span {
+              margin-left: 0;
+              margin-top: 5px; // Tạo khoảng cách giữa label và giá trị
+            }
+          }
+        }
+      }
+    }
+
+    .editButton {
+      @include button-style($primary-color);
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+
+      // Điều chỉnh nút sửa trên màn hình nhỏ
+      @media (max-width: $breakpoint-mobile) {
+        position: static; // Trở về vị trí tĩnh trong luồng
+        width: 100%; // Chiếm toàn bộ chiều rộng
+        margin-top: 20px; // Tạo khoảng cách với nội dung
+        text-align: center;
+      }
+    }
+  }
+
+  /* --- AddFlight --- */
+  .addFlightContainer {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid $border-color;
+
+    h2 {
+      color: $primary-color;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr; // Hai cột mặc định
+      gap: 20px;
+
+      // Điều chỉnh layout form trên màn hình nhỏ
+      @media (max-width: $breakpoint-tablet) {
+        grid-template-columns: 1fr; // Một cột trên màn hình nhỏ hơn tablet
+        gap: 15px; // Giảm khoảng cách
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          margin-bottom: 8px;
+          font-weight: bold;
+          color: $text-color;
+          font-size: 0.95rem; // Giảm kích thước chữ label
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="datetime-local"],
+        select {
+          padding: 10px;
+          border: 1px solid $border-color;
+          border-radius: 5px;
+          font-size: 1rem;
+          width: 100%;
+        }
+
+        .error-message {
+          color: $danger-color;
+          font-size: 0.85rem;
+          margin-top: 5px;
+        }
+      }
+
+      .form-actions {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+
+        // Điều chỉnh nút hành động trên màn hình nhỏ
+        @media (max-width: $breakpoint-mobile) {
+          flex-direction: column; // Đổi thành cột dọc
+          gap: 10px; // Khoảng cách giữa các nút
+          .add-btn,
+          .cancel-btn {
+            width: 100%; // Chiếm toàn bộ chiều rộng
+          }
+        }
+
+        .add-btn {
+          @include button-style($success-color);
+        }
+
+        .cancel-btn {
+          @include button-style($secondary-color);
+        }
+      }
+    }
+  }
+}
