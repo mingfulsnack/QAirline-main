@@ -238,6 +238,11 @@ class AdminController {
     }
   }
 
+  async deleteFlight(req, res) {
+    try {
+    } catch (error) {}
+  }
+
   // Admin: View booking statistics
   async getBookingStatistics(req, res) {
     try {

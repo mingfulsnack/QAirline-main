@@ -1,3 +1,5 @@
+// api/send-email
+
 const router = require("express").Router();
 const emailNotification = require("../SideCar/emailNotification");
 const AuthController = require("../app/controllers/AuthController");

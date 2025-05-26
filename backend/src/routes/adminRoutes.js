@@ -1,4 +1,7 @@
 // routes/adminRoutes.js
+
+// api/admin
+
 const router = require("express").Router();
 const AdminController = require("../app/controllers/AdminController");
 const { verifyToken, isAdmin } = require("../app/middleware/authMiddleware");
