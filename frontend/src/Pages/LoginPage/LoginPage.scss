@@ -1,4 +1,11 @@
-.flightInfo {
+.flightLogin {
+}
+
+.login {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin-left: 0.5rem;
   display: flex;
   flex-direction: row;
   height: 100vh;
@@ -7,13 +14,8 @@
   overflow: hidden; /* Ngăn chặn overflow gây ra viền */
   padding: 0; /* Xóa padding mặc định */
   margin-left: 1.5rem; /* Thêm margin trái */
-}
-
-.login {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  margin-left: 0.5rem;
+  margin-top: 3.5 rem;
+  max-height: 880px;
 
   h2 {
     font-size: 2.75rem;
@@ -37,12 +39,14 @@
   padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   position: relative;
+  max-height: 880px;
 }
 
 .login-content {
   width: 50%;
+  max-height: 880px;
   height: 100%;
   overflow: hidden;
   margin: 0; /* Xóa margin */
@@ -79,15 +83,19 @@
     margin-bottom: 0.5rem;
     color: #333;
     font-weight: 500;
+    /* Xoá padding-left hoặc margin-left nếu có */
+    padding-left: 0; // ← thêm dòng này
+    margin-left: 0; // ← thêm dòng này
+    text-align: left;
   }
 
   input {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1rem; // nếu bạn dùng 1rem thì label sẽ trông lệch
     border: 1px solid #ddd;
     border-radius: 0.25rem;
     font-size: 0.9rem;
-    transition: border-color 0.2s;
+    box-sizing: border-box;
 
     &:focus {
       outline: none;
