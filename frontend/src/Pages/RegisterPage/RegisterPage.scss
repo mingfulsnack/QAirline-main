@@ -1,20 +1,19 @@
 .flightLogin {
+  // Có thể thêm style tổng quan ở đây nếu cần
 }
 
 .login {
   width: 100%;
   margin: 0;
   padding: 0;
-  margin-left: 0.5rem;
+  margin-left: 1.5rem;
+  margin-top: 3.5rem;
   display: flex;
   flex-direction: row;
   height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
-  overflow: hidden; /* Ngăn chặn overflow gây ra viền */
-  padding: 0; /* Xóa padding mặc định */
-  margin-left: 1.5rem; /* Thêm margin trái */
-  margin-top: 3.5 rem;
+  overflow: hidden;
   max-height: 880px;
 
   h2 {
@@ -49,19 +48,19 @@
   max-height: 880px;
   height: 100%;
   overflow: hidden;
-  margin: 0; /* Xóa margin */
-  padding: 0; /* Xóa padding */
-  border: none; /* Xóa border */
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .login-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block; /* Sửa lỗi inline-block gây ra khoảng cách */
-  margin: 0; /* Xóa margin */
-  padding: 0; /* Xóa padding */
-  border: none; /* Xóa border */
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .content-fill {
@@ -83,15 +82,14 @@
     margin-bottom: 0.5rem;
     color: #333;
     font-weight: 500;
-    /* Xoá padding-left hoặc margin-left nếu có */
-    padding-left: 0; // ← thêm dòng này
-    margin-left: 0; // ← thêm dòng này
+    padding-left: 0;
+    margin-left: 0;
     text-align: left;
   }
 
   input {
     width: 100%;
-    padding: 0.75rem 1rem; // nếu bạn dùng 1rem thì label sẽ trông lệch
+    padding: 0.75rem 1rem;
     border: 1px solid #ddd;
     border-radius: 0.25rem;
     font-size: 0.9rem;
@@ -113,7 +111,7 @@
   width: 20px;
   height: 20px;
   right: 12px;
-  top: 50%;
+  top: 65%;
   transform: translateY(-50%);
   opacity: 0.5;
   cursor: pointer;
@@ -124,7 +122,7 @@
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  margin-top: -0.5rem;
+  margin-top: -0.8rem;
 
   span {
     cursor: pointer;
@@ -206,18 +204,79 @@
   margin-bottom: 1.5rem;
 }
 
-@media (max-width: 768px) {
-  .flightInfo {
-    flex-direction: column-reverse;
+/* =================== RESPONSIVE =================== */
+@media (max-width: 1024px) {
+  .login {
+    flex-direction: column;
+    margin-left: 0;
+    margin-top: 2rem;
+    height: auto;
+    max-height: none;
   }
 
-  .left-outline {
+  .left-outline,
+  .login-content {
     width: 100%;
-    padding: 2rem;
+    max-height: none;
+    padding: 2rem 2rem;
   }
 
   .login-content {
+    height: 35vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .login {
+    flex-direction: column;
+    margin-left: 0;
+    margin-top: 1rem;
+    height: auto;
+    max-height: none;
+  }
+
+  .left-outline,
+  .login-content {
     width: 100%;
-    height: 30vh;
+    padding: 1rem 1rem;
+    max-height: none;
+  }
+
+  .login-content {
+    height: 25vh;
+  }
+
+  .login-img {
+    height: 100%;
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login {
+    flex-direction: column;
+    margin-left: 0;
+    margin-top: 0.5rem;
+    height: auto;
+    max-height: none;
+  }
+
+  .left-outline,
+  .login-content {
+    width: 100%;
+    padding: 0.75rem 0.5rem;
+    max-height: none;
+  }
+
+  .content-fill {
+    margin-top: 1rem;
+  }
+
+  .login-content {
+    height: 18vh;
+  }
+
+  h2 {
+    font-size: 2rem;
   }
 }
