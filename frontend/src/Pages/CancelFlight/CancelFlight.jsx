@@ -104,21 +104,34 @@ function CancelFlight() {
     }
   };
 
-  const handleCancelBooking = async () => {
-    setLoading(true);
+  // const handleCancelBooking = async () => {
+  //   setLoading(true);
+  //   setError(null);
+  //   try {
+  //     await axios.patch(`/bookings/${formData.bookingId}/cancel`);
+  //     // Hiển thị thông báo thành công
+  //     setShowConfirmation(false);
+  //     // Có thể thêm một state để hiển thị thông báo thành công
+  //   } catch (err) {
+  //     setError(err.response?.data?.message || "Không thể huỷ chuyến bay");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  const handleGoBack = () => {
+    setFormData({
+      bookingId: "",
+      email: "",
+      phone: "",
+    });
+    setBookingDetails(null);
+    setShowConfirmation(false);
+    setShowOTP(false);
+    setShowNotExist(false);
     setError(null);
-    try {
-      await axios.patch(`/bookings/${formData.bookingId}/cancel`);
-      // Hiển thị thông báo thành công
-      setShowConfirmation(false);
-      // Có thể thêm một state để hiển thị thông báo thành công
-    } catch (err) {
-      setError(err.response?.data?.message || "Không thể huỷ chuyến bay");
-    } finally {
-      setLoading(false);
-    }
+    setLoading(false);
+    setSelectedCancellations(null);
   };
-
   return (
     <div className="cancelFlight">
       <h1 className="title">Huỷ đặt chỗ</h1>
@@ -181,7 +194,7 @@ function CancelFlight() {
         />
       )}
 
-      {showNotExist && <NotExistFlight />}
+      {showNotExist && <NotExistFlight onGoBack={handleGoBack} />}
     </div>
   );
 }
