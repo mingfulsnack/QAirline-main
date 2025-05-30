@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    await emailNotification.sendEmail(ticketCode, name, email);
+    await emailNotification.sendEmail(ticketCode, email);
     res.status(200).send("Email sent successfully");
   } catch (error) {
     console.log(error);

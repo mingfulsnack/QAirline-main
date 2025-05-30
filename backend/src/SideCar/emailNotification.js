@@ -16,7 +16,7 @@ class EmailNotification {
   }
 
   // Phương thức để gửi email
-  async sendEmail(ticketCode, customerName, email) {
+  async sendEmail(ticketCode, email) {
     const currentTime = Date.now();
 
     // Kiểm tra nếu thời gian giữa các lần gửi chưa đủ
@@ -25,23 +25,22 @@ class EmailNotification {
       return;
     }
     this.lastSentTime = currentTime; // Cập nhật ngay trước khi gửi email
-    console.log("Sending email:", { ticketCode, customerName, email });
-
-    // console.log("GMAIL_USER:", process.env.GMAIL_USER);
-    // console.log("GMAIL_PASS:", process.env.GMAIL_PASS);
+    console.log("Sending email:", { ticketCode, email });
 
     const letter = {
       from: process.env.GMAIL_USER,
       to: email,
       subject: "Your Ticket Confirmation",
-      text: `Dear ${customerName},\n\nThank you for booking with us. Your ticket code is: ${ticketCode}.\nPlease keep this code for your reference.\n\nBest regards,\nThe Booking Team`,
+      text: `Dear ${
+        email.split("@")[0]
+      },\n\nThank you for booking with us. Your ticket code is: ${ticketCode}.\nPlease keep this code for your reference.\n\nBest regards,\nThe Booking Team`,
     };
 
     try {
       await this.transporter.sendMail(letter);
       console.log("Email sent successfully");
 
-      // Cập nhật thời gian gửi email cuối cùng
+      // Cập nhật thời gian gửi email sau khi gửi thành công
       this.lastSentTime = currentTime;
     } catch (error) {
       console.log(error);

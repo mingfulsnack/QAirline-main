@@ -15,9 +15,10 @@ class BookingController {
 
     try {
       const { flight_id, guest_info } = req.body;
-      const userId = req.user?.id; // From authentication middleware
-      console.log("User ID:", userId);
+      const userId = req.user?.id;
+
       // Find flight and check availability within transaction
+
       const flight = await Flight.findById(flight_id).session(session);
       if (!flight) {
         await session.abortTransaction();
@@ -71,9 +72,7 @@ class BookingController {
         await session.abortTransaction();
         return res.status(404).json({ message: "Aircraft not found" });
       }
-      // 6730c3fb0e737122d16a23fe
-      // 6730c3fb0e737122d16a23fe
-      // Initialize total_revenue if it doesn't exist
+
       if (!aircraft.total_revenue) {
         aircraft.total_revenue = 0;
       }
@@ -84,11 +83,16 @@ class BookingController {
       await session.commitTransaction();
 
       // Populate flight info and return response
-      const populatedBooking = await Booking.findById(booking._id).populate(
-        "flight_id"
-      );
+      const populatedBooking = await Booking.findById(booking._id)
+        .populate({
+          path: "flight_id",
+          populate: "aircraft_id",
+        })
+        .populate("userId");
 
-      res.status(201).json(populatedBooking);
+      res.status(201).json({
+        populatedBooking,
+      });
     } catch (error) {
       // Abort transaction on error
       await session.abortTransaction();
@@ -154,7 +158,6 @@ class BookingController {
       const updatedBooking = await Booking.findById(bookingId);
       console.log("After save:", updatedBooking.status);
 
-      
       await flight.save({ session });
 
       // Commit transaction
