@@ -32,7 +32,7 @@ function FlightInfoResult({
     <div className="flight-info-result-container">
       <div className="header-section">
         <div className="guest-info">
-          <p className="prepared-for">ĐÃ CHUẨN BỊ CHO</p>
+      
           <h2 className="guest-name">{guest_info?.full_name}</h2>
         </div>
         <div className="booking-code">
@@ -41,15 +41,11 @@ function FlightInfoResult({
           </p>
         </div>
         <div className="airline-logo">
-          <img
-            src="/assets/Qlogo.png"
-            alt="QAirline Logo"
-            className="logo-img"
-          />
+          
           <h1 className="airline-name">QAIRLINE</h1>
         </div>
       </div>
-
+      <h3 className="in4">Thông tin hãng hàng không</h3>
       <div className="flight-details">
         <div className="flight-icon">
           <FaPlane />
@@ -81,14 +77,15 @@ function FlightInfoResult({
             </p>
           </div>
         </div>
-        <p className="flight-status">
+      </div>
+      <p className="flight-status">
           Trạng thái:{" "}
           <strong className={status === "Confirmed" ? "confirmed" : "pending"}>
             {status}
           </strong>
         </p>
-      </div>
-
+        <p className="airline-name-full">Khoang: <strong>phổ thông</strong></p>
+        <hr className="section-divider" />
       <div className="passenger-info-section">
         <h3>Thông tin hành khách</h3>
         <div className="info-grid">
@@ -114,19 +111,6 @@ function FlightInfoResult({
         </div>
       </div>
 
-      <div className="airline-details-section">
-        <h3>Thông tin hãng hàng không</h3>
-        <div className="airline-info">
-          <img
-            src="assets/Qlogo-nobg.png"
-            alt="QAirline Small Logo"
-            className="airline-small-logo"
-          />
-          <p className="airline-name-full">QAIRLINE</p>
-          <p className="cabin-class">Khoang: Phổ thông</p>
-          {/* <p className="ticket-receipt">Biên nhận vé: 123456789</p> */}
-        </div>
-      </div>
     </div>
   );
 }

@@ -179,3 +179,26 @@
   --whiteColor: #fff;
   --blackColor: #212529;
 }
+.flight-status {
+  margin-bottom: 1.0rem; // hoặc 24px, tuỳ ý bạn
+}
+.in4 {
+  font-size: 1.2rem;
+      color: var(--secondaryColor);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--greyLight);
+      padding-bottom: 0.5rem;
+}
+.airline-name-full {
+  margin-bottom: 2.0rem;
+}
+.section-divider {
+  border: none;
+  border-bottom: 1px solid var(--greyText);
+  margin: 1.5rem 0;
+}
+
+.flight-status strong,
+.airline-name-full strong {
+  color: var(--blackColor) !important;
+}

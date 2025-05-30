@@ -15,6 +15,10 @@ import {
 } from "recharts";
 import "./StatisticsDashboard.scss";
 
+const COLORS = [
+  "#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8", "#a83279", "#fcb045", "#f85f73", "#28df99", "#f6f7d7"
+];
+
 const StatisticsDashboard = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -102,34 +106,40 @@ const StatisticsDashboard = () => {
 
         {/* Aircraft Revenue Ranking */}
         <div className="card">
-          <h3 className="card__header">Aircraft Revenue Ranking</h3>
-          <div className="card__chart">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={aircraftRankingData}
-                  dataKey="revenue"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={120}
-                  label={({ name, revenue }) =>
-                    `${name} (${formatRevenue(revenue)})`
-                  }
-                >
-                  {aircraftRankingData.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-                <Tooltip formatter={(value) => formatRevenue(value)} />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
+  <h3 className="card__header">Aircraft Revenue Ranking</h3>
+  <div className="card__chart">
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart
+        data={aircraftRankingData}
+        layout="vertical"
+        margin={{ top: 20, right: 30, left: 40, bottom: 20 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis
+          type="number"
+          tickFormatter={formatRevenue}
+          label={{ value: "Revenue", position: "insideBottomRight", offset: 0 }}
+        />
+        <YAxis
+          type="category"
+          dataKey="name"
+          width={100}
+          label={{ value: "Aircraft", angle: -90, position: "insideLeft" }}
+        />
+        <Tooltip formatter={formatRevenue} />
+        <Legend />
+        <Bar dataKey="revenue" name="Revenue">
+          {aircraftRankingData.map((entry, index) => (
+            <Cell
+              key={`cell-${index}`}
+              fill={COLORS[index % COLORS.length]}
+            />
+          ))}
+        </Bar>
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+</div>
       </div>
 
       {/* Summary Stats */}
