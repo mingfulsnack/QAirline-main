@@ -9,7 +9,6 @@ import { smoothScrollToTop } from "../../CommonFunctions/SmoothScrollToTop";
 export default function BookingUserInfo() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedGender, setSelectedGender] = useState("Nam");
   const {
     outbound,
     return: returnFlight,
@@ -31,6 +30,17 @@ export default function BookingUserInfo() {
     }))
   );
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [formErrors, setFormErrors] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("VNPay");
+
+  const qrImages = {
+    VNPay: "assets/payments/qr-vnpay.png",
+    MoMo: "assets/payments/qr-momo.png",
+    Banking: "assets/payments/qr-banking.png",
+  };
+
   const formatFlightDateTime = (departureTime, arrivalTime) => {
     const formatDateTime = (date) =>
       date.toLocaleDateString("en-GB", {
@@ -48,8 +58,55 @@ export default function BookingUserInfo() {
     return `${formatDateTime(departure)} - ${formatDateTime(arrival)}`;
   };
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const scrollToTop = () => {
+    setTimeout(() => {
+      smoothScrollToTop();
+    }, 100);
+  };
+
+  const validateFormDataList = (formDataList) => {
+    const errors = [];
+
+    for (let i = 0; i < formDataList.length; i++) {
+      const formData = formDataList[i];
+      const error = {};
+
+      if (!formData.firstName.trim()) {
+        error.firstName = "Vui lòng nhập họ";
+      }
+
+      if (!formData.lastName.trim()) {
+        error.lastName = "Vui lòng nhập tên";
+      }
+
+      if (!formData.phone.trim()) {
+        error.phone = "Vui lòng nhập số điện thoại";
+      }
+
+      if (!formData.email.trim()) {
+        error.email = "Vui lòng nhập email";
+      } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+          error.email = "Email không hợp lệ";
+        }
+      }
+
+      if (!formData.idNumber.trim()) {
+        error.idNumber = "Vui lòng nhập CCCD/CMND";
+      }
+      if (!formData.birthDate.trim()) {
+        error.birthDate = "Vui lòng nhập ngày sinh";
+      }
+
+      errors.push(error);
+    }
+
+    setFormErrors(errors);
+
+    // Return true if there are any errors
+    return errors.some((e) => Object.keys(e).length > 0);
+  };
 
   const handleInputChange = (index, field, value) => {
     setFormDataList((prev) => {
@@ -60,10 +117,19 @@ export default function BookingUserInfo() {
   };
 
   const handleSubmit = async () => {
+    const hasValidationErrors = validateFormDataList(formDataList);
+    if (hasValidationErrors) {
+      setError("Vui lòng kiểm tra lại thông tin");
+      smoothScrollToTop();
+      return;
+    }
+
     setLoading(true);
+    setError(null);
     let bookingCodelist = [];
     let emailList = [];
     let name = "";
+
     try {
       for (const formData of formDataList) {
         // Create booking for outbound flight
@@ -89,9 +155,10 @@ export default function BookingUserInfo() {
         );
 
         console.log("Outbound booking created:", response);
-        bookingCodelist.push(response._id);
+        bookingCodelist.push(response.populatedBooking._id);
         emailList.push(formData.email);
         name = `${formData.firstName} ${formData.lastName}`;
+
         // Create booking for return flight (if available)
         if (returnFlight) {
           const returnBookingData = {
@@ -120,7 +187,6 @@ export default function BookingUserInfo() {
         }
       }
 
-      setError(null);
       navigate("/TicketSuccess", {
         state: { bookingCodelist, emailList, name },
       });
@@ -134,32 +200,15 @@ export default function BookingUserInfo() {
 
   useEffect(() => {
     if (!loading && !error) {
-      scrollToTop(); // Chỉ gọi scrollToTop nếu không có lỗi và không đang loading
+      scrollToTop();
     }
-  }, [loading, error]); // Theo dõi sự thay đổi của loading và error
-
-  const [selectedOption, setSelectedOption] = useState("VNPay");
-
-  const qrImages = {
-    VNPay: "assets/payments/qr-vnpay.png",
-    MoMo: "assets/payments/qr-momo.png",
-    Banking: "assets/payments/qr-banking.png",
-  };
-
-  const scrollToTop = () => {
-    setTimeout(() => {
-      smoothScrollToTop();
-    }, 100); // Đặt thời gian trì hoãn (500ms)
-  };
+  }, [loading, error]);
 
   return (
     <div className="booking-container">
       <div className="booking-user-info">
         <header className="quick-pick-banner">
           <div className="quick-pick-left">
-            {/* <div className="icon-circle">
-              <img src="assets/dufen_img.png" alt="User" />
-            </div> */}
             <div className="quick-pick-text">
               <h3>Hoàn thành thông tin đặt vé</h3>
               <p>Chúc quý khách tận hưởng khi chọn QAirline</p>
@@ -177,42 +226,65 @@ export default function BookingUserInfo() {
                   type="text"
                   placeholder="Họ*"
                   value={formData.firstName}
+                  className={formErrors[index]?.firstName ? "error-input" : ""}
                   onChange={(e) =>
                     handleInputChange(index, "firstName", e.target.value)
                   }
                 />
+                {formErrors[index]?.firstName && (
+                  <span className="error-text">
+                    {formErrors[index].firstName}
+                  </span>
+                )}
               </div>
 
               <div className="form-group">
                 <input
                   type="text"
-                  placeholder="Tên đệm & tên*"
+                  placeholder="Tên*"
                   value={formData.lastName}
+                  className={formErrors[index]?.lastName ? "error-input" : ""}
                   onChange={(e) =>
                     handleInputChange(index, "lastName", e.target.value)
                   }
                 />
+                {formErrors[index]?.lastName && (
+                  <span className="error-text">
+                    {formErrors[index].lastName}
+                  </span>
+                )}
               </div>
 
               <div className="form-group">
                 <input
                   type="date"
+                  placeholder="MM/DD/YYYY*"
                   value={formData.birthDate}
+                  className={formErrors[index]?.birthDate ? "error-input" : ""}
                   onChange={(e) =>
                     handleInputChange(index, "birthDate", e.target.value)
                   }
                 />
+                {formErrors[index]?.birthDate && (
+                  <span className="error-text">
+                    {formErrors[index].birthDate}
+                  </span>
+                )}
               </div>
 
               <div className="form-group">
                 <input
-                  type="tel"
+                  type="text"
                   placeholder="Số điện thoại*"
                   value={formData.phone}
+                  className={formErrors[index]?.phone ? "error-input" : ""}
                   onChange={(e) =>
                     handleInputChange(index, "phone", e.target.value)
                   }
                 />
+                {formErrors[index]?.phone && (
+                  <span className="error-text">{formErrors[index].phone}</span>
+                )}
               </div>
 
               <div className="form-group">
@@ -220,21 +292,31 @@ export default function BookingUserInfo() {
                   type="email"
                   placeholder="Email*"
                   value={formData.email}
+                  className={formErrors[index]?.email ? "error-input" : ""}
                   onChange={(e) =>
                     handleInputChange(index, "email", e.target.value)
                   }
                 />
+                {formErrors[index]?.email && (
+                  <span className="error-text">{formErrors[index].email}</span>
+                )}
               </div>
 
               <div className="form-group">
                 <input
                   type="text"
-                  placeholder="CCCD/CMND/Hộ chiếu*"
+                  placeholder="CCCD/CMND*"
                   value={formData.idNumber}
+                  className={formErrors[index]?.idNumber ? "error-input" : ""}
                   onChange={(e) =>
                     handleInputChange(index, "idNumber", e.target.value)
                   }
                 />
+                {formErrors[index]?.idNumber && (
+                  <span className="error-text">
+                    {formErrors[index].idNumber}
+                  </span>
+                )}
               </div>
 
               <div className="form-group">
@@ -242,10 +324,16 @@ export default function BookingUserInfo() {
                   type="text"
                   placeholder="Nơi ở hiện tại"
                   value={formData.address}
+                  className={formErrors[index]?.address ? "error-input" : ""}
                   onChange={(e) =>
                     handleInputChange(index, "address", e.target.value)
                   }
                 />
+                {formErrors[index]?.address && (
+                  <span className="error-text">
+                    {formErrors[index].address}
+                  </span>
+                )}
               </div>
             </div>
           ))}
@@ -271,12 +359,7 @@ export default function BookingUserInfo() {
 
           <div className="form-actions">
             {error && <p className="error-message">{error}</p>}
-            <button
-              onClick={async () => {
-                await handleSubmit();
-              }}
-              disabled={loading}
-            >
+            <button onClick={handleSubmit} disabled={loading}>
               {loading ? <ClipLoader size={20} /> : "Hoàn tất"}
             </button>
           </div>
@@ -315,7 +398,7 @@ export default function BookingUserInfo() {
         )}
         <div className="total">
           <h4>Tổng tiền</h4>
-          <p>{totalAmount.toLocaleString()} VND</p>
+          <p>{totalAmount?.toLocaleString()} VND</p>
         </div>
       </aside>
     </div>
