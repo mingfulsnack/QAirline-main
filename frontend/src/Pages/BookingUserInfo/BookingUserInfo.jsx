@@ -89,10 +89,11 @@ export default function BookingUserInfo() {
         );
 
         console.log("Outbound booking created:", response);
-        bookingCodelist.push(response._id);
+        bookingCodelist.push(response.populatedBooking._id);
         emailList.push(formData.email);
         name = `${formData.firstName} ${formData.lastName}`;
-        // Create booking for return flight (if available)
+
+        // Nếu người dùng đặt vé khứ hồi
         if (returnFlight) {
           const returnBookingData = {
             flight_id: returnFlight._id,
@@ -119,6 +120,10 @@ export default function BookingUserInfo() {
           bookingCodelist.push(response._id);
         }
       }
+
+      console.log("bookingCodelist:", bookingCodelist);
+      console.log("emailList:", emailList);
+      console.log("name:", name);
 
       setError(null);
       navigate("/TicketSuccess", {

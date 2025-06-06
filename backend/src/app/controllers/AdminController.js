@@ -4,6 +4,8 @@ const Aircraft = require("../models/aircraft");
 const Flight = require("../models/flight");
 const Booking = require("../models/Booking");
 
+const mongoose = require("mongoose");
+
 class AdminController {
   async getPosts(req, res) {
     try {
@@ -107,6 +109,8 @@ class AdminController {
 
   // Admin: Create flight
   async createFlight(req, res) {
+    const aircraft_id = new mongoose.Types.ObjectId("6730c3fb0e737122d16a2400");
+
     const {
       flight_number,
       origin_airport_id,
@@ -128,6 +132,7 @@ class AdminController {
         status,
         base_price,
         available_seats,
+        aircraft_id,
       });
       console.log("save fail???");
       await flight.save();
@@ -268,11 +273,6 @@ class AdminController {
         error: "Error deleting aircraft",
       });
     }
-  }
-
-  async deleteFlight(req, res) {
-    try {
-    } catch (error) {}
   }
 
   // Admin: View booking statistics
