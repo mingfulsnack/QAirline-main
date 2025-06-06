@@ -1,5 +1,3 @@
-import React from "react";
-
 function ConfirmCancel() {
   return (
     <div className="requestCancel confirmCancel">
@@ -32,7 +30,7 @@ function ConfirmCancel() {
             <button>Điều chỉnh</button>
           </div> */}
           <div className="findingBut yes">
-            <button >Tiếp tục</button>
+            <button>Tiếp tục</button>
           </div>
         </div>
       </div>

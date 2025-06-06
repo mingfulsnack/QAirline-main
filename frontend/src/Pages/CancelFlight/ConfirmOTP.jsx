@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function ConfirmOTP({ email, onConfirm, onClose, onResendOTP }) {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const handleSubmit = async () => {
     if (!otp.trim()) {
@@ -17,16 +22,14 @@ function ConfirmOTP({ email, onConfirm, onClose, onResendOTP }) {
 
     setLoading(true);
     try {
-      // Gọi hàm onConfirm từ component cha và đợi kết quả
-      await onConfirm();
+      // Truyền otp vào hàm xác thực
+      await onConfirm(otp);
 
-      // Nếu thành công thì hiển thị toast và chuyển trang
       toast.success("Huỷ đặt chỗ thành công", { position: "top-right" });
       setTimeout(() => {
         navigate("/");
       }, 1000);
     } catch (error) {
-      // Nếu có lỗi thì hiển thị thông báo lỗi
       toast.error(error.response?.data?.message || "Có lỗi xảy ra", {
         position: "top-right",
       });
@@ -43,11 +46,12 @@ function ConfirmOTP({ email, onConfirm, onClose, onResendOTP }) {
       <h2>Xác nhận OTP</h2>
       <p>
         Để thực hiện giao dịch, Quý khách vui lòng nhập mã xác thực đã được gửi
-        tới email {email}
+        tới email <strong>{email}</strong>
       </p>
       <div className="content-fill">
         <div className="input-area">
           <input
+            ref={inputRef}
             type="text"
             placeholder=" "
             value={otp}
@@ -58,10 +62,14 @@ function ConfirmOTP({ email, onConfirm, onClose, onResendOTP }) {
       </div>
       <div className="buts">
         <div className="findingBut OTPBut">
-          <button onClick={onResendOTP}>Gửi lại</button>
+          <button onClick={onResendOTP} disabled={loading}>
+            Gửi lại
+          </button>
         </div>
         <div className="findingBut OTPBut">
-          <button onClick={handleSubmit}>Xác thực</button>
+          <button onClick={handleSubmit} disabled={loading}>
+            {loading ? "Đang xác thực..." : "Xác thực"}
+          </button>
         </div>
       </div>
     </div>

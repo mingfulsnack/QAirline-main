@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./CancelFlight.scss";
 import RequestCancel from "./RequestCancel";
-import ConfirmCancel from "./ConfirmCancel";
+// import ConfirmCancel from "./ConfirmCancel";
 import ConfirmOTP from "./ConfirmOTP";
 import NotExistFlight from "../../CommonComponents/NotExistFlight";
 import axios from "../../Apis/axios";
