@@ -83,12 +83,17 @@ class BookingController {
       await session.commitTransaction();
 
       // Populate flight info and return response
-      const populatedBooking = await Booking.findById(booking._id)
-        .populate({
-          path: "flight_id",
-          populate: "aircraft_id",
-        })
-        .populate("userId");
+
+      // const populatedBooking = await Booking.findById(booking._id)
+      //   .populate({
+      //     path: "flight_id",
+      //     populate: "aircraft_id",
+      //   })
+      //   .populate("userId");
+
+      const populatedBooking = await Booking.findById(booking._id).populate(
+        "flight_id"
+      );
 
       res.status(201).json({
         populatedBooking,
