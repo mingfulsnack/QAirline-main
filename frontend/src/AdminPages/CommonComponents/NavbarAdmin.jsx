@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./NavbarAdmin.scss";
@@ -15,7 +16,7 @@ const NavbarAdmin = () => {
       <div className="sidebar-header">
         <div className="app-icon">
           <Link to="/">
-            <img src="./assets/QAirlineNewLogo.png" alt="" />
+            <img src="./assets/QAirlineNewLogo.png" alt="" className="img" />
           </Link>
         </div>
       </div>

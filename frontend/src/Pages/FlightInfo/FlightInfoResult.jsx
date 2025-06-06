@@ -31,17 +31,12 @@ function FlightInfoResult({
   return (
     <div className="flight-info-result-container">
       <div className="header-section">
-        <div className="guest-info">
-      
-          <h2 className="guest-name">{guest_info?.full_name}</h2>
-        </div>
         <div className="booking-code">
           <p>
             MÃ ĐẶT CHỖ: <span className="code-value">{_id}</span>
           </p>
         </div>
         <div className="airline-logo">
-          
           <h1 className="airline-name">QAIRLINE</h1>
         </div>
       </div>
@@ -79,13 +74,15 @@ function FlightInfoResult({
         </div>
       </div>
       <p className="flight-status">
-          Trạng thái:{" "}
-          <strong className={status === "Confirmed" ? "confirmed" : "pending"}>
-            {status}
-          </strong>
-        </p>
-        <p className="airline-name-full">Khoang: <strong>phổ thông</strong></p>
-        <hr className="section-divider" />
+        Trạng thái:{" "}
+        <strong className={status === "Confirmed" ? "confirmed" : "pending"}>
+          {status}
+        </strong>
+      </p>
+      <p className="airline-name-full">
+        Khoang: <strong>phổ thông</strong>
+      </p>
+      <hr className="section-divider" />
       <div className="passenger-info-section">
         <h3>Thông tin hành khách</h3>
         <div className="info-grid">
@@ -110,7 +107,6 @@ function FlightInfoResult({
           {/* You can add more details here if needed */}
         </div>
       </div>
-
     </div>
   );
 }

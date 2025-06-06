@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from "react";
 import "./FlightInfo.scss"; // Đảm bảo file SCSS này tồn tại
 import AddFlight from "./AddFlight"; // Đảm bảo component này tồn tại và hoạt động
 import FlightResult from "./FlightResult";
@@ -153,8 +154,6 @@ function FlightsInfo() {
     // Bạn cần implement logic thêm chuyến bay ở đây và sau đó fetchFlights() lại
     // hoặc thêm chuyến bay mới vào flightList
     try {
-      const response = await axios.post("/admin/flights", newFlight); // Giả định endpoint thêm chuyến bay
-      toast.success("Thêm chuyến bay thành công!");
       fetchFlights(); // Tải lại danh sách để hiển thị chuyến bay mới
       setAction(Status.SHOWALL);
     } catch (error) {
